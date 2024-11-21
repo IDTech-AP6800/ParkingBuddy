@@ -41,7 +41,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Adjusted for compileSdk 33
     implementation 'com.google.code.gson:gson:2.11.0'
     implementation 'org.zeromq:jeromq:0.6.0'
-    implementation 'androidx.fragment:fragment-ktx:1.5.7' // Compatible version
+    implementation 'androidx.fragment:fragment-ktx:1.5.7'
+    implementation files('libs/zsdk_client-1.84.aar') // Compatible version
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
