@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="idtech_green">#1aaf6f</color>
+    <color name="idtech_medium_green">#1d975e</color>
+    <color name="idtech_dark_green">#007047</color>
+    <color name="idtech_grey">#d2d2d4</color>
 </resources>

@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Navigation Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/idtech_green"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- Back Button -->
+        <LinearLayout
+            android:id="@+id/back_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/components_vector_back"
+                android:contentDescription="Back Button"/>
+        </LinearLayout>
+
+        <!-- Home Button -->
+        <LinearLayout
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/components_vector_home"
+                android:contentDescription="Home Button"/>
+        </LinearLayout>
+
+        <!-- Accessibility Button -->
+        <LinearLayout
+            android:id="@+id/accessibility_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/components_vector_accessibility"
+                android:contentDescription="Accessibility Button"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

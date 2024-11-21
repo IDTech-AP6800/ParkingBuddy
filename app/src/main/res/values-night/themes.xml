@@ -1,7 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.ParkingAP6800" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Base.Theme.AP6800Parking" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/idtech_green</item>
+        <item name="colorPrimaryVariant">@color/idtech_dark_green</item>
+        <item name="colorSecondary">@color/idtech_grey</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="background">@color/black</item>
     </style>
+
+    <style name="Theme.AP6800Parking" parent="Base.Theme.AP6800Parking" />
+
 </resources>

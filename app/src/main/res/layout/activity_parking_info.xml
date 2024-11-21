@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Width License Plate = 397, Width table = 198.5 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/components_background_general" />
+
+    <TextView
+        android:id="@+id/parkingInfoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/relay_exo_medium"
+        android:text="Parking Information"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintBottom_toTopOf="@id/licensePlate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/licensePlate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/relay_exo_bold"
+        android:text="Enter License Plate"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/licensePlateInfo"
+        app:layout_constraintLeft_toLeftOf="@id/parkingInfoTitle"
+        app:layout_constraintTop_toBottomOf="@id/parkingInfoTitle" />
+
+    <TextView
+        android:id="@+id/parkingDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/relay_exo_bold"
+        android:text="Expected Parking Duration"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/licensePlateInfo"
+        app:layout_constraintBottom_toTopOf="@id/upButtonHours"
+        app:layout_constraintTop_toBottomOf="@id/licensePlateInfo" />
+
+    <TextView
+        android:id="@+id/parkingFee"
+        android:layout_width="400dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/green_box"
+        android:fontFamily="@font/relay_exo_bold"
+        android:gravity="center"
+        android:paddingVertical="5dp"
+        android:text="Parking Fee"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/minutes"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/parkingFeeRate"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/green_box"
+        android:fontFamily="@font/relay_exo_medium"
+        android:gravity="center"
+        android:paddingVertical="5dp"
+        android:text="Per 1 hour\nPer 30 minutes"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/parkingFee"
+        app:layout_constraintRight_toLeftOf="@id/parkingFeeRatePrice"
+        app:layout_constraintTop_toBottomOf="@id/parkingFee" />
+
+    <TextView
+        android:id="@+id/parkingFeeRatePrice"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/green_box"
+        android:fontFamily="@font/relay_exo_medium"
+        android:gravity="center"
+        android:paddingVertical="5dp"
+        android:text="$4.00\n$2.00"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/parkingFeeRate"
+        app:layout_constraintRight_toRightOf="@id/parkingFee"
+        app:layout_constraintTop_toBottomOf="@id/parkingFee"/>
+
+    <TextView
+        android:id="@+id/totalDue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/relay_exo_medium"
+        android:paddingVertical="5dp"
+        android:text="Total due: $4.00"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/parkingFeeRate" />
+
+
+
+    <EditText
+        android:id="@+id/licensePlateInfo"
+        android:layout_width="385dp"
+        android:layout_height="63dp"
+        android:background="@drawable/dashed_border"
+        android:fontFamily="@font/relay_exo_bold"
+        android:inputType="text"
+        android:letterSpacing=".5"
+        android:maxLength="7"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toLeftOf="@id/licensePlate"
+        app:layout_constraintTop_toBottomOf="@id/licensePlate" />
+
+    <TextView
+        android:id="@+id/parkingDurationHours"
+        android:layout_width="55dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/dashed_border"
+        android:fontFamily="@font/relay_exo_bold"
+        android:gravity="center"
+        android:text="@string/hours_parking_duration"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toLeftOf="@id/parkingDuration"
+        app:layout_constraintTop_toBottomOf="@id/parkingDuration"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <TextView
+        android:id="@+id/parkingDurationMinutes"
+        android:layout_width="55dp"
+        android:layout_height="84dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/dashed_border"
+        android:fontFamily="@font/relay_exo_bold"
+        android:gravity="center"
+        android:text="@string/minutes_parking_duration"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toLeftOf="@id/colon"
+        app:layout_constraintTop_toBottomOf="@id/parkingDuration" />
+
+    <!--Button Size: 90 x 60 -->
+    <ImageButton
+        android:id="@+id/upButtonHours"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/parking_up_button"
+        android:contentDescription="Upwards arrow button to increase parking hours"
+        app:layout_constraintBottom_toTopOf="@id/downButtonHours"
+        app:layout_constraintTop_toBottomOf="@id/parkingDuration"
+        app:layout_constraintLeft_toRightOf="@id/parkingDurationHours"
+        tools:layout_editor_absoluteX="93dp"
+        tools:layout_editor_absoluteY="282dp" />
+
+    <ImageButton
+        android:id="@+id/downButtonHours"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:src="@drawable/parking_down_button"
+        android:contentDescription="Downward arrow button to decrease parking hours"
+        app:layout_constraintLeft_toLeftOf="@id/upButtonHours"
+        app:layout_constraintTop_toBottomOf="@id/upButtonHours"/>
+
+    <ImageButton
+        android:id="@+id/upButtonMinutes"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/parking_up_button"
+        android:contentDescription="Upward arrow button to increase parking minutes"
+        app:layout_constraintLeft_toRightOf="@id/parkingDurationMinutes"
+        app:layout_constraintBottom_toTopOf="@id/downButtonMinutes"
+        app:layout_constraintTop_toTopOf="@id/upButtonHours"
+        tools:layout_editor_absoluteX="294dp"
+        tools:layout_editor_absoluteY="282dp" />
+
+    <ImageButton
+        android:id="@+id/downButtonMinutes"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:src="@drawable/parking_down_button"
+        android:contentDescription="Downward arrow button to decrease parking minutes"
+        app:layout_constraintLeft_toLeftOf="@id/upButtonMinutes"
+        app:layout_constraintTop_toBottomOf="@id/upButtonMinutes"/>
+
+    <TextView
+        android:id="@+id/colon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/relay_exo_bold"
+        android:text=":"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toRightOf="@id/upButtonHours"
+        app:layout_constraintRight_toLeftOf="@id/parkingDurationMinutes"
+        app:layout_constraintBottom_toTopOf="@id/downButtonHours"
+        app:layout_constraintTop_toBottomOf="@id/upButtonHours" />
+
+    <TextView
+        android:id="@+id/hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/relay_exo_bold"
+        android:text="Hours"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/parkingDurationHours"
+        app:layout_constraintLeft_toLeftOf="@id/parkingDurationHours"
+        app:layout_constraintRight_toRightOf="@id/parkingDurationHours" />
+
+
+    <TextView
+        android:id="@+id/minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/relay_exo_bold"
+        android:text="Minutes"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@id/parkingDurationMinutes"
+        app:layout_constraintRight_toRightOf="@id/parkingDurationMinutes"
+        app:layout_constraintTop_toBottomOf="@+id/parkingDurationMinutes"
+        tools:layout_editor_absoluteX="222dp" />
+
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="146dp"
+        android:layout_height="48dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/continue_button"
+        android:gravity="center"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/totalDue"
+        app:layout_constraintBottom_toTopOf="@id/navBar"/>
+
+    <LinearLayout
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#05AD6E"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Back button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/user_information_1_0_vector6" />
+        </LinearLayout>
+
+        <!-- Home button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/user_information_1_0_vector5" />
+        </LinearLayout>
+
+        <!-- Accessibility button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/user_information_1_0_vector4" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        android:fontFamily="@font/relay_exo_medium"
+        android:text=""
+        android:textColor="@color/error"
+        android:textSize="30sp"
+        android:gravity="center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
