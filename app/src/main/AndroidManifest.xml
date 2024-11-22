@@ -21,10 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activities.ParkingInfo"
+        <activity
+            android:name=".activities.ParkingInfo"
             android:exported="true"/>
-        
+        <activity
+            android:name=".activities.PaymentOptions"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.Processing"
+            android:exported="true"/>
+        <activity android:name=".activities.SwipeCardActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

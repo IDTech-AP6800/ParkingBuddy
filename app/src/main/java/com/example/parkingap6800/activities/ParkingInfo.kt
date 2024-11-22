@@ -1,6 +1,6 @@
 package com.example.parkingap6800.activities
 
-import android.R
+import com.example.parkingap6800.R
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -90,7 +90,7 @@ class ParkingInfo : AppCompatActivity() {
 
     //Creates listener to listen to page being tapped after error image pops up
     private fun listenErrorClick() {
-        val rootView = findViewById<View>(R.id.content)
+        val rootView = findViewById<View>(android.R.id.content)
         rootView.setOnClickListener {
             val errorMessage = findViewById<View>(R.id.errorMessage) as TextView
             errorMessage.text = ""
