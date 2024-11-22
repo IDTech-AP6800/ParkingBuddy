@@ -1,20 +1,143 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    android:background="@color/black">
 
-    <TextView
-        android:id="@+id/tvStatus"
+    <!-- Background Images -->
+    <ImageView
+        android:id="@+id/rectangle_background_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Status: Not connected"
-        android:textSize="18sp"
-        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/components_home_background_bottom" />
+
+    <ImageView
+        android:id="@+id/rectangle_background_middle_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:srcCompat="@drawable/components_home_background_middle" />
+
+    <ImageView
+        android:id="@+id/rectangle_background_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/components_home_background_top" />
+
+    <!-- Tap to Get Started Text -->
+    <TextView
+        android:id="@+id/tapToGetStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="324dp"
+        android:text="@string/main_page"
+        android:textColor="@color/white"
+        android:fontFamily="@font/exo_medium"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Park Buddy Logo -->
+    <ImageView
+        android:id="@+id/park_buddy_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/components_park_buddy_logo"
+        app:layout_constraintBottom_toTopOf="@id/tapToGetStarted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Parking Rates Table -->
+    <TextView
+        android:id="@+id/parkingFee"
+        android:layout_width="300dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/green_box"
+        android:fontFamily="@font/exo_bold"
+        android:gravity="center"
+        android:paddingVertical="5dp"
+        android:text="Parking Rates"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/tapToGetStarted"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/parkingFeeRate"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/green_box"
+        android:fontFamily="@font/exo_medium"
+        android:gravity="left"
+        android:paddingVertical="20dp"
+        android:paddingLeft="10dp"
+        android:text="Per 1 hour\nPer 30 minutes"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/parkingFee"
+        app:layout_constraintRight_toLeftOf="@id/parkingFeeRatePrice"
+        app:layout_constraintTop_toBottomOf="@id/parkingFee" />
+
+    <TextView
+        android:id="@+id/parkingFeeRatePrice"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/green_box"
+        android:fontFamily="@font/exo_medium"
+        android:gravity="center"
+        android:paddingVertical="20dp"
+        android:text="$4.00\n$2.00"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/parkingFeeRate"
+        app:layout_constraintRight_toRightOf="@id/parkingFee"
+        app:layout_constraintTop_toBottomOf="@id/parkingFee"/>
+
+
+    <!-- Powered By Text -->
+    <TextView
+        android:id="@+id/powered_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/exo_medium"
+        android:text="powered by"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/park_buddy_logo" />
+
+    <!-- IDTech Logo -->
+    <ImageView
+        android:id="@+id/idtech_logo"
+        android:layout_width="96dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/powered_by"
+        app:layout_constraintTop_toBottomOf="@id/park_buddy_logo"
+        app:srcCompat="@drawable/components_IDTECH_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
