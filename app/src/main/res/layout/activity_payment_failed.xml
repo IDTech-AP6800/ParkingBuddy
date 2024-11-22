@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Width License Plate = 397, Width table = 198.5 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+    <include
+        layout="@layout/navigation_bar"/>
+
+    <!--Payment Options-->
+    <ImageView
+        android:id="@+id/ellipse_glow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/red_glow" />
+
+    <TextView
+        android:id="@+id/payment_failed_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_medium"
+        android:text="@string/payment_unsuccessful"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@id/please_try_again"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/please_try_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_medium"
+        android:text="@string/please_try_again"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@id/payment_options"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.809" />
+
+    <GridLayout
+        android:id="@+id/payment_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payment_failed_text"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="50dp"
+        android:columnCount="2"
+        android:padding="13dp"
+        android:rowCount="2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- QR Code Option -->
+        <LinearLayout
+            android:id="@+id/qr_code_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/components_payment_options_button"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:paddingVertical="20dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/components_qr_code"
+                android:contentDescription="QR Code Option" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scan QR Code"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/exo_bold"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!--Swipe Option-->
+        <LinearLayout
+            android:id="@+id/swipe_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/components_payment_options_button"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/components_swipe"
+                android:contentDescription="Swipe Option"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Swipe"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/exo_bold"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!--Insert Option-->
+        <LinearLayout
+            android:id="@+id/insert_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/components_payment_options_button"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:paddingVertical="20dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:src="@drawable/components_insert"
+                android:contentDescription="Insert Option"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insert"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/exo_bold"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!--Tap Option-->
+        <LinearLayout
+            android:id="@+id/tap_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/components_payment_options_button"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/components_tap"
+                android:padding="5dp"
+                android:contentDescription="Tap Option"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tap"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/exo_bold"
+                android:textSize="22sp"/>
+        </LinearLayout>
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,4 +5,6 @@
     <string name="main_page">Tap here to get started</string>
     <string name="insert_card_prompt">Insert Card Here</string>
     <string name="home_button">Home Button</string>
+    <string name="payment_unsuccessful">Payment Unsuccessful</string>
+    <string name="please_try_again">Please Try Again</string>
 </resources>
