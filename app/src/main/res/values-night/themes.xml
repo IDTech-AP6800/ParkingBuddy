@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.AP6800Parking" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.ParkingBuddy" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/idtech_green</item>
         <item name="colorPrimaryVariant">@color/idtech_dark_green</item>
         <item name="colorSecondary">@color/idtech_grey</item>
@@ -8,6 +8,6 @@
         <item name="background">@color/black</item>
     </style>
 
-    <style name="Theme.AP6800Parking" parent="Base.Theme.AP6800Parking" />
+    <style name="Theme.ParkingBuddy." parent="Base.Theme.ParkingBuddy" />
 
 </resources>
