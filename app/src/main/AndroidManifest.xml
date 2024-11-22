@@ -22,16 +22,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ParkingInfo"
+            android:name=".activities.ParkingInfoActivity"
             android:exported="true"/>
         <activity
-            android:name=".activities.PaymentOptions"
+            android:name=".activities.PaymentOptionsActivity"
             android:exported="true"/>
         <activity
-            android:name=".activities.InsertCard"
+            android:name=".activities.InsertCardActivity"
             android:exported="true"/>
         <activity
-            android:name=".activities.Processing"
+            android:name=".activities.ProcessingActivity"
             android:exported="true"/>
         <activity android:name=".activities.SwipeCardActivity"
             android:exported="true"/>

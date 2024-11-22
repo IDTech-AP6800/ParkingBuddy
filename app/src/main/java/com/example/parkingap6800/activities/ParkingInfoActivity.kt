@@ -10,7 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class ParkingInfo : AppCompatActivity() {
+class ParkingInfoActivity : AppCompatActivity() {
     private val calc: ParkingInfoCalculation = ParkingInfoCalculation()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +82,7 @@ class ParkingInfo : AppCompatActivity() {
                 listenErrorClick()
             } else {
                 // Create an Intent to navigate to the PaymentOptions activity
-                val intent = Intent(this@ParkingInfo, PaymentOptions::class.java)
+                val intent = Intent(this@ParkingInfoActivity, PaymentOptionsActivity::class.java)
                 startActivity(intent)
             }
         }

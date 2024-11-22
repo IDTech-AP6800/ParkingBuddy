@@ -1,5 +1,4 @@
 package com.example.parkingap6800.activities
-import android.annotation.SuppressLint
 import com.example.parkingap6800.R
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +9,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 
 
-class InsertCard : AppCompatActivity() {
+class InsertCardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +19,7 @@ class InsertCard : AppCompatActivity() {
         // Set an OnClickListener on the root view to detect clicks anywhere on the screen
         val rootView = findViewById<View>(android.R.id.content)
         rootView.setOnClickListener { // Intent to switch to Processing activity
-            val intent = Intent(this@InsertCard, Processing::class.java)
+            val intent = Intent(this@InsertCardActivity, ProcessingActivity::class.java)
             startActivity(intent)
         }
 
@@ -36,7 +35,7 @@ class InsertCard : AppCompatActivity() {
             //                Log.d(TAG, "Home button clicked!");
 
             // Create an Intent to start MainActivity
-            val i = Intent(this@InsertCard, MainActivity::class.java)
+            val i = Intent(this@InsertCardActivity, MainActivity::class.java)
 
             // optional: Clear activity stack to avoid multiple instances??
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)

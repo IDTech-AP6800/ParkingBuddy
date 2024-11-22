@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         // Set an OnClickListener on the root view to detect clicks anywhere on the screen
         val rootView = findViewById<View>(android.R.id.content)
         rootView.setOnClickListener { // Intent to switch to ParkingInfo activity
-            val intent = Intent(this@MainActivity, ParkingInfo::class.java)
+            val intent = Intent(this@MainActivity, ParkingInfoActivity::class.java)
             startActivity(intent)
         }
     }
