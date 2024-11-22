@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--Background-->
+    <!-- Background -->
     <include
         layout="@layout/background"/>
 
-    <!--Navigation Bar-->
+    <!-- Navigation Bar -->
     <include
         layout="@layout/navigation_bar"/>
 
-    <!--Payment Options Text-->
+    <!-- Payment Options Text -->
     <TextView
         android:id="@+id/payment_options_text"
         android:layout_width="wrap_content"
@@ -24,15 +24,15 @@
         android:fontFamily="@font/exo_medium"
         android:textSize="36sp"/>
 
-    <!--Payment Options-->
+    <!-- Payment Options -->
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/payment_options_text"
+        android:layout_alignTop="@+id/navBar"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:columnCount="2"
-        android:padding="13dp"
         android:rowCount="2">
 
         <!-- QR Code Option -->
@@ -45,8 +45,7 @@
             android:background="@drawable/components_payment_options_button"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:paddingVertical="20dp">
+            android:layout_margin="5dp">
 
             <ImageView
                 android:layout_width="100dp"
@@ -64,7 +63,7 @@
                 android:textSize="22sp"/>
         </LinearLayout>
 
-        <!--Swipe Option-->
+        <!-- Swipe Option -->
         <LinearLayout
             android:id="@+id/swipe_option"
             android:layout_width="0dp"
@@ -92,7 +91,7 @@
                 android:textSize="22sp"/>
         </LinearLayout>
 
-        <!--Insert Option-->
+        <!-- Insert Option -->
         <LinearLayout
             android:id="@+id/insert_option"
             android:layout_width="0dp"
@@ -102,8 +101,7 @@
             android:background="@drawable/components_payment_options_button"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:paddingVertical="20dp">
+            android:layout_margin="5dp">
 
             <ImageView
                 android:layout_width="100dp"
@@ -123,7 +121,7 @@
                 android:textSize="22sp"/>
         </LinearLayout>
 
-        <!--Tap Option-->
+        <!-- Tap Option -->
         <LinearLayout
             android:id="@+id/tap_option"
             android:layout_width="0dp"
