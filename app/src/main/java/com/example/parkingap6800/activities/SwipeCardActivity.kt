@@ -1,4 +1,5 @@
 package com.example.parkingap6800.activities
+
 import com.example.parkingap6800.R
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -7,45 +8,59 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-
+import android.view.View
 
 class SwipeCardActivity : AppCompatActivity() {
-    private var swipeArrow: ImageView? = null
-    private var swipeIndication: ImageView? = null
+
+    private lateinit var swipeArrow: ImageView
+    private lateinit var swipeIndication: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_swipe)
-        swipeArrow = findViewById<ImageView>(R.id.swipeArrow)
-        swipeIndication = findViewById<ImageView>(R.id.swipeIndication)
+
+        // Initialize views
+        swipeArrow = findViewById(R.id.swipeArrow)
+        swipeIndication = findViewById(R.id.swipeIndication)
+
+        // Start animations
         startAnimations()
     }
 
     private fun startAnimations() {
         // Swipe Indication Animations
-        val moveDown = ObjectAnimator.ofFloat(swipeIndication, "translationY", 0f, 350f)
-        moveDown.duration = 1500
-        val pauseDown = ObjectAnimator.ofFloat(swipeIndication, "translationY", 350f, 350f)
-        pauseDown.duration = 1000
-        val moveUp = ObjectAnimator.ofFloat(swipeIndication, "translationY", 350f, 0f)
-        moveUp.duration = 500
-        val pauseUp = ObjectAnimator.ofFloat(swipeIndication, "translationY", 0f, 0f)
-        pauseUp.duration = 500
-        val swipeIndicationSet = AnimatorSet()
-        swipeIndicationSet.playSequentially(moveDown, pauseDown, moveUp, pauseUp)
+        val moveDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 700f).apply {
+            duration = 1500
+        }
 
-        // Restart the animation
-        swipeIndicationSet.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                swipeIndicationSet.start()
-            }
-        })
-        swipeIndicationSet.start()
+        val pauseDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 700f, 700f).apply {
+            duration = 1000
+        }
+
+        val moveUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 700f, 0f).apply {
+            duration = 500
+        }
+
+        val pauseUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 0f).apply {
+            duration = 500
+        }
+
+        val swipeIndicationSet = AnimatorSet().apply {
+            playSequentially(moveDown, pauseDown, moveUp, pauseUp)
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    start() // Restart the animation loop
+                }
+            })
+            start()
+        }
 
         // Swipe Arrow Animation
-        val arrowAnimator = ObjectAnimator.ofFloat(swipeArrow, "translationX", -20f, 0f)
-        arrowAnimator.duration = 1000 // 1 second
-        arrowAnimator.repeatCount = ObjectAnimator.INFINITE
-        arrowAnimator.repeatMode = ObjectAnimator.REVERSE
-        arrowAnimator.start()
+        ObjectAnimator.ofFloat(swipeArrow, View.TRANSLATION_X, -20f, 0f).apply {
+            duration = 1000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+            start()
+        }
     }
 }
