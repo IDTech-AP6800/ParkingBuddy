@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 
 
 class InsertCard : AppCompatActivity() {
-    @SuppressLint("WrongViewCast")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //        Log.d(TAG, "Home button created!");
@@ -28,7 +29,7 @@ class InsertCard : AppCompatActivity() {
 
         // Find the home button imageview by ID
 
-        val homeButton = findViewById<ImageView>(R.id.home_button)
+        val homeButton = findViewById<LinearLayout>(R.id.home_button)
 
         // Set OnCLickListener for the button
         homeButton.setOnClickListener { // Print to console when the button is clicked

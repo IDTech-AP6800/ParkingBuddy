@@ -28,6 +28,9 @@
             android:name=".activities.PaymentOptions"
             android:exported="true"/>
         <activity
+            android:name=".activities.InsertCard"
+            android:exported="true"/>
+        <activity
             android:name=".activities.Processing"
             android:exported="true"/>
         <activity android:name=".activities.SwipeCardActivity"
