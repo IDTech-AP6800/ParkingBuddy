@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background -->
+    <include
+        layout="@layout/background"/>
+
+    <!-- Navigation Bar -->
+    <include
+        layout="@layout/navigation_bar"/>
+
+    <!-- Swipe Card Text -->
+    <TextView
+        android:id="@+id/swipeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Swipe Card"
+        android:textColor="@color/white"
+        android:fontFamily="@font/exo_medium"
+        android:textSize="34sp"
+        android:gravity="center"
+        android:layout_marginTop="50dp" />
+
+    <!-- Swipe Background Eclipse -->
+    <ImageView
+        android:id="@+id/swipeBackground"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/components_swipe_background_eclipse"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/swipeAmountDue"
+        android:layout_alignTop="@id/swipeText"/>
+
+    <!-- Swipe Indication -->
+    <ImageView
+        android:id="@+id/swipeIndication"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignEnd="@+id/swipeArrow"
+        android:layout_alignTop="@+id/swipeText"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="60dp"
+        android:src="@drawable/components_swipe_indication" />
+
+    <!-- Swipe Arrow -->
+    <ImageView
+        android:id="@+id/swipeArrow"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/components_swipe_arrow"/>
+
+    <!-- Amount Due Text -->
+    <TextView
+        android:id="@+id/swipeAmountDue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Amount Due: $6.00"
+        android:textColor="@color/white"
+        android:fontFamily="@font/exo_medium"
+        android:textSize="34sp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"/>
+
+</RelativeLayout>

@@ -3,7 +3,7 @@
     <string name="hours_parking_duration">1</string>
     <string name="minutes_parking_duration">0</string>
     <string name="main_page">Tap here to get started</string>
-    <string name="insert_card_prompt">Insert Card Here</string>
+    <string name="insert_card_prompt">Insert Card</string>
     <string name="home_button">Home Button</string>
     <string name="payment_unsuccessful">Payment Unsuccessful</string>
     <string name="please_try_again">Please Try Again</string>
