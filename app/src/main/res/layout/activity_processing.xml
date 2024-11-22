@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background -->
+    <include
+        layout="@layout/background"/>
+
+    <!-- Green Shadow for Text -->
+    <ImageView
+        android:id="@+id/greenProcessingBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/components_green_background_text" />
+
+    <!-- Please Wait Text -->
+    <TextView
+        android:id="@+id/processingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:gravity="center"
+        android:text="Please Wait \n Payment Processing"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/exo_medium"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Loading Circle Image -->
+    <ImageView
+        android:id="@+id/loadingCircle"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/greenProcessingBackground"
+        app:srcCompat="@drawable/components_loading_circle" />
+
+    <TextView
+        android:id="@+id/loadingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:fontFamily="@font/exo_bold"
+        app:layout_constraintTop_toTopOf="@id/loadingCircle"
+        app:layout_constraintBottom_toBottomOf="@id/loadingCircle"
+        app:layout_constraintStart_toStartOf="@id/loadingCircle"
+        app:layout_constraintEnd_toEndOf="@id/loadingCircle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

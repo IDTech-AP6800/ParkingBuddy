@@ -138,6 +138,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/powered_by"
         app:layout_constraintTop_toBottomOf="@id/park_buddy_logo"
-        app:srcCompat="@drawable/components_IDTECH_logo" />
+        app:srcCompat="@drawable/components_idtech_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

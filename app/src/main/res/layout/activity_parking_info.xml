@@ -6,17 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
-<!--tools:context=".ParkingInfo" //Should be name of activity here -->
 
-    <ImageView
-        android:id="@+id/backgroundImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/components_background_general" />
+    <!-- Background -->
+    <include
+        layout="@layout/background"/>
 
+    <!-- Navigation Bar -->
+    <include
+        layout="@layout/navigation_bar"/>
+
+    <!-- Parking Information Text -->
     <TextView
         android:id="@+id/parkingInfoTitle"
         android:layout_width="wrap_content"
@@ -32,6 +31,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- License Plate Text -->
     <TextView
         android:id="@+id/licensePlate"
         android:layout_width="wrap_content"
@@ -45,6 +45,7 @@
         app:layout_constraintLeft_toLeftOf="@id/parkingInfoTitle"
         app:layout_constraintTop_toBottomOf="@id/parkingInfoTitle" />
 
+    <!-- Parking Duration Text -->
     <TextView
         android:id="@+id/parkingDuration"
         android:layout_width="wrap_content"
@@ -58,6 +59,7 @@
         app:layout_constraintBottom_toTopOf="@id/upButtonHours"
         app:layout_constraintTop_toBottomOf="@id/licensePlateInfo" />
 
+    <!-- Parking Fee Text -->
     <TextView
         android:id="@+id/parkingFee"
         android:layout_width="400dp"
@@ -74,7 +76,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-
+    <!-- Parking Fee Rates -->
     <TextView
         android:id="@+id/parkingFeeRate"
         android:layout_width="200dp"
@@ -90,6 +92,7 @@
         app:layout_constraintRight_toLeftOf="@id/parkingFeeRatePrice"
         app:layout_constraintTop_toBottomOf="@id/parkingFee" />
 
+    <!-- Parking Fee Rate Price -->
     <TextView
         android:id="@+id/parkingFeeRatePrice"
         android:layout_width="200dp"
@@ -105,6 +108,7 @@
         app:layout_constraintRight_toRightOf="@id/parkingFee"
         app:layout_constraintTop_toBottomOf="@id/parkingFee"/>
 
+    <!-- Total Due Text -->
     <TextView
         android:id="@+id/totalDue"
         android:layout_width="wrap_content"
@@ -118,8 +122,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/parkingFeeRate" />
 
-
-
+    <!-- License Plate Text Box -->
     <EditText
         android:id="@+id/licensePlateInfo"
         android:layout_width="385dp"
@@ -136,11 +139,12 @@
         app:layout_constraintLeft_toLeftOf="@id/licensePlate"
         app:layout_constraintTop_toBottomOf="@id/licensePlate" />
 
+    <!-- Parking Duration Hour -->
     <TextView
         android:id="@+id/parkingDurationHours"
-        android:layout_width="55dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="65dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/dashed_border"
         android:fontFamily="@font/exo_bold"
         android:gravity="center"
@@ -151,11 +155,13 @@
         app:layout_constraintTop_toBottomOf="@id/parkingDuration"
         tools:layout_editor_absoluteY="300dp" />
 
+    <!-- Parking Duration Minute -->
     <TextView
         android:id="@+id/parkingDurationMinutes"
-        android:layout_width="55dp"
-        android:layout_height="84dp"
-        android:layout_margin="20dp"
+        android:layout_width="65dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
         android:background="@drawable/dashed_border"
         android:fontFamily="@font/exo_bold"
         android:gravity="center"
@@ -165,13 +171,17 @@
         app:layout_constraintLeft_toLeftOf="@id/colon"
         app:layout_constraintTop_toBottomOf="@id/parkingDuration" />
 
-    <!--Button Size: 90 x 60 -->
+    <!--Button Size: 90 x 50 -->
+
+    <!-- Hour Button Up -->
     <ImageButton
         android:id="@+id/upButtonHours"
         android:layout_width="90dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:src="@drawable/components_drop_up"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/components_button_up"
+        android:background="@drawable/components_button_background"
         android:contentDescription="Upwards arrow button to increase parking hours"
         app:layout_constraintBottom_toTopOf="@id/downButtonHours"
         app:layout_constraintTop_toBottomOf="@id/parkingDuration"
@@ -179,21 +189,25 @@
         tools:layout_editor_absoluteX="93dp"
         tools:layout_editor_absoluteY="282dp" />
 
+    <!-- Hour Button Down -->
     <ImageButton
         android:id="@+id/downButtonHours"
         android:layout_width="90dp"
-        android:layout_height="60dp"
-        android:src="@drawable/components_drop_down"
+        android:layout_height="50dp"
+        android:src="@drawable/components_button_down"
+        android:background="@drawable/components_button_background"
         android:contentDescription="Downward arrow button to decrease parking hours"
         app:layout_constraintLeft_toLeftOf="@id/upButtonHours"
         app:layout_constraintTop_toBottomOf="@id/upButtonHours"/>
 
+    <!-- Minute Button Up -->
     <ImageButton
         android:id="@+id/upButtonMinutes"
         android:layout_width="90dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:src="@drawable/components_drop_up"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/components_button_up"
+        android:background="@drawable/components_button_background"
         android:contentDescription="Upward arrow button to increase parking minutes"
         app:layout_constraintLeft_toRightOf="@id/parkingDurationMinutes"
         app:layout_constraintBottom_toTopOf="@id/downButtonMinutes"
@@ -201,15 +215,18 @@
         tools:layout_editor_absoluteX="294dp"
         tools:layout_editor_absoluteY="282dp" />
 
+    <!-- Minute Button Down -->
     <ImageButton
         android:id="@+id/downButtonMinutes"
         android:layout_width="90dp"
-        android:layout_height="60dp"
-        android:src="@drawable/components_drop_down"
+        android:layout_height="50dp"
+        android:src="@drawable/components_button_down"
+        android:background="@drawable/components_button_background"
         android:contentDescription="Downward arrow button to decrease parking minutes"
         app:layout_constraintLeft_toLeftOf="@id/upButtonMinutes"
         app:layout_constraintTop_toBottomOf="@id/upButtonMinutes"/>
 
+    <!-- Colon between Hour and Minute -->
     <TextView
         android:id="@+id/colon"
         android:layout_width="wrap_content"
@@ -223,25 +240,24 @@
         app:layout_constraintBottom_toTopOf="@id/downButtonHours"
         app:layout_constraintTop_toBottomOf="@id/upButtonHours" />
 
+    <!-- Hours Text -->
     <TextView
         android:id="@+id/hours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_bold"
-        android:textSize="15sp"
         android:text="Hours"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/parkingDurationHours"
         app:layout_constraintLeft_toLeftOf="@id/parkingDurationHours"
         app:layout_constraintRight_toRightOf="@id/parkingDurationHours" />
 
-
+    <!-- Minutes Text -->
     <TextView
         android:id="@+id/minutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_bold"
-        android:textSize="15sp"
         android:text="Minutes"
         android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="@id/parkingDurationMinutes"
@@ -249,6 +265,7 @@
         app:layout_constraintTop_toBottomOf="@+id/parkingDurationMinutes"
         tools:layout_editor_absoluteX="222dp" />
 
+    <!-- Continue Button -->
     <Button
         android:id="@+id/continueButton"
         android:layout_width="146dp"
@@ -264,21 +281,22 @@
         app:layout_constraintTop_toBottomOf="@id/totalDue"
         app:layout_constraintBottom_toTopOf="@id/navBar"/>
 
-    <include layout="@layout/navigation_bar"/>
-
+    <!-- Error Message -->
     <TextView
         android:id="@+id/errorMessage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#00000000"
         android:fontFamily="@font/exo_medium"
+        android:gravity="center"
         android:text=""
         android:textColor="@color/error"
         android:textSize="30sp"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
