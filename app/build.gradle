@@ -45,7 +45,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.11.0'
     implementation 'org.zeromq:jeromq:0.6.0'
     implementation 'androidx.fragment:fragment-ktx:1.5.7'
-    implementation files('libs/zsdk_client-1.84.aar') // Compatible version
+    implementation files('libs/zsdk_client-1.84.aar')
+    implementation 'androidx.core:core-ktx:+'// Compatible version
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
