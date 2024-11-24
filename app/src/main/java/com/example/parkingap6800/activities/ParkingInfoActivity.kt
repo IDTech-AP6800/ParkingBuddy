@@ -16,6 +16,9 @@ class ParkingInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parking_info)
 
+        // Initialize the NavigationBar class to handle the navigation bar functionality
+        NavigationBar(this)
+
         //Setting up the event listeners
         listenIncreaseHours()
         listenDecreaseHours()

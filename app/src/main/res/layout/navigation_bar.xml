@@ -22,6 +22,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/back_button_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/components_vector_back"
@@ -37,6 +38,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/home_button_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/components_vector_home"
@@ -52,6 +54,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/accessibility_button_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/components_vector_accessibility"
