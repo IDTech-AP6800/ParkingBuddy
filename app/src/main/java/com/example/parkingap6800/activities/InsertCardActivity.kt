@@ -16,6 +16,9 @@ class InsertCardActivity : AppCompatActivity() {
         //        Log.d(TAG, "Home button created!");
         setContentView(R.layout.activity_insert)
 
+        // Initialize the NavigationBar class to handle the navigation bar functionality
+        NavigationBar(this)
+
         // Set an OnClickListener on the root view to detect clicks anywhere on the screen
         val rootView = findViewById<View>(android.R.id.content)
         rootView.setOnClickListener { // Intent to switch to Processing activity

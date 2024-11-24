@@ -11,6 +11,9 @@ class PaymentOptionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_options)
 
+        // Initialize the NavigationBar class to handle the navigation bar functionality
+        NavigationBar(this)
+
         //Insert Option Listener
         val insertOption = findViewById<LinearLayout>(R.id.insert_option)
         insertOption.setOnClickListener {
