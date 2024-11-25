@@ -27,30 +27,6 @@ class InsertCardActivity : AppCompatActivity() {
         }
 
 
-        // Home button functionality -
-
-        // Find the home button imageview by ID
-
-        val homeButton = findViewById<LinearLayout>(R.id.home_button)
-
-        // Set OnCLickListener for the button
-        homeButton.setOnClickListener { // Print to console when the button is clicked
-            //                Log.d(TAG, "Home button clicked!");
-
-            // Create an Intent to start MainActivity
-            val i = Intent(this@InsertCardActivity, MainActivity::class.java)
-
-            // optional: Clear activity stack to avoid multiple instances??
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-
-            // Start MainActivity
-            startActivity(i)
-
-            // Call finish() to close InsertCardActivity
-            finish()
-        }
-
-
         // Animation functionality
         // Find the ImageView
         val imageView5 = findViewById<ImageView>(R.id.swipeIndication)
