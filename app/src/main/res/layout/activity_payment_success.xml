@@ -179,7 +179,7 @@
 
         <!--No receipt Option-->
         <LinearLayout
-            android:id="@+id/tap_option"
+            android:id="@+id/no_receipt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
