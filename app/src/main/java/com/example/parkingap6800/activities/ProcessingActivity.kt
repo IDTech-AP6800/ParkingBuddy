@@ -13,8 +13,8 @@ class ProcessingActivity : AppCompatActivity() {
 
         // Set an OnClickListener on the root view to detect clicks anywhere on the screen
         val rootView = findViewById<View>(android.R.id.content)
-        rootView.setOnClickListener { // Intent to switch to PaymentFailed activity
-            val intent = Intent(this@ProcessingActivity, PaymentFailedActivity::class.java)
+        rootView.setOnClickListener { // Intent to switch to PaymentSuccess activity
+            val intent = Intent(this@ProcessingActivity, PaymentSuccessActivity::class.java)
             startActivity(intent)
 
             // Call finish() to close ProcessingActivity
