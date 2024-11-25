@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="black">#0C0C0C</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="idtech_green">#1aaf6f</color>
+    <color name="idtech_medium_green">#1d975e</color>
+    <color name="idtech_dark_green">#007047</color>
+    <color name="idtech_grey">#d2d2d4</color>
+    <color name="error">#FFD878</color>
+    <color name="semi_opaque_black">#CC000000</color>
 </resources>

@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ParkingAP6800"
+        android:theme="@style/Theme.ParkingBuddy"
         tools:targetApi="31">
         <activity
             android:name=".activities.MainActivity"
@@ -21,6 +21,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.ParkingInfoActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.PaymentOptionsActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.InsertCardActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.ProcessingActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.SwipeCardActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.TapCardActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.PaymentFailedActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.PaymentSuccessActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>

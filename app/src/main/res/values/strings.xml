@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">ParkingAP6800</string>
+    <string name="app_name">AP6800Parking</string>
+    <string name="hours_parking_duration">1</string>
+    <string name="minutes_parking_duration">0</string>
+    <string name="main_page">Tap here to get started</string>
+    <string name="insert_card_prompt">Insert Card</string>
+    <string name="home_button">Home Button</string>
+    <string name="payment_unsuccessful">Payment Unsuccessful</string>
+    <string name="payment_successful">Payment Successful</string>
+    <string name="please_try_again">Please Try Again</string>
+    <string name="thank_you">Thank you!</string>
+    <string name="qr_code_option">Scan QR Code</string>
+    <string name="swipe_option">Swipe</string>
+    <string name="insert_option">Insert</string>
+    <string name="tap_option">Tap</string>
+    <string name="email_option">Email</string>
+    <string name="message_option">SMS</string>
+    <string name="no_receipt">No Receipt</string>
+    <string name="select_receipt_option">Select Receipt Option</string>
+    <string name="tap_card_here">Tap your card on the screen</string>
+
 </resources>

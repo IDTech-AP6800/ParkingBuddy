@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background -->
+    <include
+        layout="@layout/background"/>
+
+    <!-- Navigation Bar -->
+    <include
+        layout="@layout/navigation_bar"/>
+
+    <!-- Insert Card Text -->
+    <TextView
+        android:id="@+id/tapToGetStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/exo_medium"
+        android:text="@string/insert_card_prompt"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <!--  Eclipse Glow  -->
+    <ImageView
+        android:id="@+id/ellipseGlow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/components_insert_background_eclipse"
+        android:layout_alignBottom="@+id/insertArrow"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Amount Due Text -->
+    <TextView
+        android:id="@+id/amountDue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/swipeIndication"
+        android:layout_marginBottom="140dp"
+        android:fontFamily="@font/exo_medium"
+        android:text="Amount Due: $6.00"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <!-- Card Icon -->
+    <ImageView
+        android:id="@+id/swipeIndication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/insertArrow"
+        android:layout_marginBottom="80dp"
+        app:srcCompat="@drawable/components_insert_indication_card" />
+
+    <!-- Down Arrow Icon -->
+    <ImageView
+        android:id="@+id/insertArrow"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/navBar"
+        android:layout_marginBottom="60dp"
+        app:srcCompat="@drawable/components_insert_arrow" />
+</RelativeLayout>
