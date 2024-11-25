@@ -37,6 +37,9 @@
             android:exported="true"/>
         <activity android:name=".activities.PaymentFailedActivity"
             android:exported="true"/>
+        <activity android:name=".activities.PaymentSuccessActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
