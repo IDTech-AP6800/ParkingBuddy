@@ -18,11 +18,22 @@ class MainActivity : AppCompatActivity() {
 
         // Create an instance of the floating animation
         val floatAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.float_up_down1)
+        val scaleAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.scale_up_down)
 
 
         // Set floating animation on Park Buddy logo ImageView
         val parkBuddyLogo = findViewById<ImageView>(R.id.park_buddy_logo)
         parkBuddyLogo.startAnimation(floatAnimation)
+
+        val poweredBy = findViewById<TextView>(R.id.powered_by)
+        poweredBy.startAnimation(floatAnimation)
+
+        val idTechLogo = findViewById<ImageView>(R.id.idtech_logo)
+        idTechLogo.startAnimation(floatAnimation)
+
+//        // Set floating animation on Tap to Get Started TextView
+//        val tapToGetStartedText = findViewById<TextView>(R.id.tapToGetStarted)
+//        tapToGetStartedText.startAnimation(scaleAnimation)
 
         // Set an OnClickListener on the root view to detect clicks anywhere on the screen
         val rootView = findViewById<View>(android.R.id.content)
