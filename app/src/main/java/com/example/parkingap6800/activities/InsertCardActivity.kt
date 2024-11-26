@@ -6,7 +6,9 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.parkingap6800.ParkingSession
 
 
 class InsertCardActivity : AppCompatActivity() {
@@ -18,6 +20,10 @@ class InsertCardActivity : AppCompatActivity() {
 
         // Initialize the NavigationBar class to handle the navigation bar functionality
         NavigationBar(this)
+
+        val totalDue = ParkingSession.totalDue
+        val totalDueTextView = findViewById<TextView>(R.id.totalDue)
+        totalDueTextView.text = "Total due: $$totalDue"
 
         // Set an OnClickListener on the root view to detect clicks anywhere on the screen
         val rootView = findViewById<View>(android.R.id.content)
