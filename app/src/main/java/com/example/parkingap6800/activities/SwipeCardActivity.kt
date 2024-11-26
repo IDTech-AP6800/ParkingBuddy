@@ -19,6 +19,9 @@ class SwipeCardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_swipe)
 
+        // Initialize the NavigationBar class to handle the navigation bar functionality
+        NavigationBar(this)
+
         // Initialize views
         swipeArrow = findViewById(R.id.swipeArrow)
         swipeIndication = findViewById(R.id.swipeIndication)
