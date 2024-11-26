@@ -56,10 +56,10 @@
 
     <!-- Amount Due Text -->
     <TextView
-        android:id="@+id/swipeAmountDue"
+        android:id="@+id/totalDue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Amount Due: $6.00"
+        android:text="Total Due:"
         android:textColor="@color/white"
         android:fontFamily="@font/exo_medium"
         android:textSize="34sp"

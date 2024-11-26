@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import android.widget.TextView
+import com.example.parkingap6800.ParkingSession
 
 class SwipeCardActivity : AppCompatActivity() {
 
@@ -21,6 +23,10 @@ class SwipeCardActivity : AppCompatActivity() {
 
         // Initialize the NavigationBar class to handle the navigation bar functionality
         NavigationBar(this)
+
+        val totalDue = ParkingSession.totalDue
+        val totalDueTextView = findViewById<TextView>(R.id.totalDue)
+        totalDueTextView.text = "Total due: $$totalDue"
 
         // Initialize views
         swipeArrow = findViewById(R.id.swipeArrow)
