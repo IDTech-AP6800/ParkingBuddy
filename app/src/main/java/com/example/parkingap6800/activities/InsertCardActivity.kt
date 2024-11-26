@@ -10,8 +10,13 @@ import com.example.parkingap6800.R
 
 class InsertCardActivity : AppCompatActivity() {
 
-    private lateinit var cardAnimation: AnimationDrawable
-    private lateinit var swipeIndication: ImageView
+    // Declare a variable of type AnimationDrawable to hold the frame-by-frame animation
+    // which will be initialized later by retrieving the drawable from the ImageView.
+    private lateinit var cardAniVar: AnimationDrawable
+
+    // Declare a variable of type ImageView to reference the ImageView widget
+    // (which will be initialized later by finding it in the layout).
+    private lateinit var iViewVar: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,40 +34,18 @@ class InsertCardActivity : AppCompatActivity() {
         }
 
 
-        // OLD
-//        // Animation functionality
-//        // Find the ImageView
-//        val imageView5 = findViewById<ImageView>(R.id.swipeIndication)
-//
-//        // Load animation from XML
-//        val floatAnimation1 = AnimationUtils.loadAnimation(this, R.anim.float_up_down1)
-//
-//        // Start the animation
-//        imageView5.startAnimation(floatAnimation1)
-//
-//        // Animation functionality - Down arrow (@+id/insertArrow)
-//        // Find the ImageView
-//        val insertarrow = findViewById<ImageView>(R.id.insertArrow)
-//
-//        // Load animation from XML
-//        val floatAnimation2 = AnimationUtils.loadAnimation(this, R.anim.float_up_down2)
-//        insertarrow.startAnimation(floatAnimation2)
+        // Initialize iViewVar by finding the ImageView inside the XML with ID cardIcon
+        iViewVar = findViewById(R.id.cardIcon)
 
-        // Initialize the ImageView for swipe indication (this holds the animation)
-        swipeIndication = findViewById(R.id.swipeIndication)
-
-        // Load the animation drawable from the XML resource
-        swipeIndication.setImageResource(R.drawable.insert_card_animation)
-
-        // Initialize the AnimationDrawable from the ImageView's drawable
-        cardAnimation = swipeIndication.drawable as AnimationDrawable
+        // Initialize cardAniVar by getting the drawable from the ImageView
+        cardAniVar = iViewVar.drawable as AnimationDrawable
     }
 
     override fun onStart() {
         super.onStart()
 
         // Start the animation
-        cardAnimation.start()
+        cardAniVar.start()
     }
 
     companion object {

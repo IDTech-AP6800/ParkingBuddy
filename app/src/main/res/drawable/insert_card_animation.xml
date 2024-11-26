@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:oneshot="false">
 
-    <item android:drawable="@drawable/components_card_insert_1" android:duration="200" />
-    <item android:drawable="@drawable/components_card_insert_2" android:duration="200" />
-    <item android:drawable="@drawable/components_card_insert_3" android:duration="200" />
+    <item android:drawable="@drawable/components_card_insert_1" android:duration="500" />
+    <item android:drawable="@drawable/components_card_insert_2" android:duration="500" />
+    <item android:drawable="@drawable/components_card_insert_3" android:duration="500" />
 
 </animation-list>
