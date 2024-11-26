@@ -21,8 +21,13 @@ class InsertCardActivity : AppCompatActivity() {
         // Initialize the NavigationBar class to handle the navigation bar functionality
         NavigationBar(this)
 
+        // Retrieve the total due amount from the ParkingSession singleton class
         val totalDue = ParkingSession.totalDue
+
+        // Find the TextView responsible for displaying the total due amount in the layout
         val totalDueTextView = findViewById<TextView>(R.id.totalDue)
+
+        // Set the text of the TextView to display the total due amount
         totalDueTextView.text = "Total due: $$totalDue"
 
         // Set an OnClickListener on the root view to detect clicks anywhere on the screen
