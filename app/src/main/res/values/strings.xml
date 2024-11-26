@@ -18,5 +18,6 @@
     <string name="no_receipt">No Receipt</string>
     <string name="select_receipt_option">Select Receipt Option</string>
     <string name="tap_card_here">Tap your card on the screen</string>
-
+    <string name="scan_qr_code_text">Scan your QR code below</string>
+    <string name="camera_image_placeholder">Camera Image Placeholder\n</string>
 </resources>

@@ -28,16 +28,19 @@
             android:name=".activities.PaymentOptionsActivity"
             android:exported="true"/>
         <activity
-            android:name=".activities.InsertCardActivity"
+            android:name=".activities.ProcessingActivity"
             android:exported="true"/>
         <activity
-            android:name=".activities.ProcessingActivity"
+            android:name=".activities.InsertCardActivity"
             android:exported="true"/>
         <activity
             android:name=".activities.SwipeCardActivity"
             android:exported="true"/>
         <activity
             android:name=".activities.TapCardActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.QrCodeActivity"
             android:exported="true"/>
         <activity
             android:name=".activities.PaymentFailedActivity"
