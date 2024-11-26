@@ -33,8 +33,19 @@
         <activity
             android:name=".activities.ProcessingActivity"
             android:exported="true"/>
-        <activity android:name=".activities.SwipeCardActivity"
+        <activity
+            android:name=".activities.SwipeCardActivity"
             android:exported="true"/>
+        <activity
+            android:name=".activities.TapCardActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.PaymentFailedActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.PaymentSuccessActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>

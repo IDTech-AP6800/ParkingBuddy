@@ -17,5 +17,6 @@
     <string name="message_option">SMS</string>
     <string name="no_receipt">No Receipt</string>
     <string name="select_receipt_option">Select Receipt Option</string>
+    <string name="tap_card_here">Tap your card on the screen</string>
 
 </resources>
