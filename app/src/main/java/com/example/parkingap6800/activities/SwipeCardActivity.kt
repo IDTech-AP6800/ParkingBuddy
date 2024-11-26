@@ -29,16 +29,16 @@ class SwipeCardActivity : AppCompatActivity() {
 
     private fun startAnimations() {
         // Swipe Indication Animations
-        val moveDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 700f).apply {
-            duration = 1500
+        val moveDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 400f).apply {
+            duration = 700
         }
 
-        val pauseDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 700f, 700f).apply {
-            duration = 1000
-        }
-
-        val moveUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 700f, 0f).apply {
+        val pauseDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 400f, 400f).apply {
             duration = 500
+        }
+
+        val moveUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 400f, 0f).apply {
+            duration = 400
         }
 
         val pauseUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 0f).apply {
@@ -56,8 +56,8 @@ class SwipeCardActivity : AppCompatActivity() {
         }
 
         // Swipe Arrow Animation
-        ObjectAnimator.ofFloat(swipeArrow, View.TRANSLATION_X, -20f, 0f).apply {
-            duration = 1000
+        ObjectAnimator.ofFloat(swipeArrow, View.TRANSLATION_X, -10f, -0f).apply {
+            duration = 2000
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE
             start()
