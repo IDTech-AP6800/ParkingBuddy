@@ -45,7 +45,8 @@
             android:background="@drawable/components_payment_options_button"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="100dp"
