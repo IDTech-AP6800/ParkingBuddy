@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.parkingap6800.ParkingSession
 
 class ParkingInfoActivity : AppCompatActivity() {
     private val calc: ParkingInfoCalculation = ParkingInfoCalculation()
@@ -84,6 +85,14 @@ class ParkingInfoActivity : AppCompatActivity() {
                 errorMessage.setBackgroundColor(Color.parseColor("#CC000000"))
                 listenErrorClick()
             } else {
+
+                val parkingTotal = findViewById<View>(R.id.totalDue) as TextView
+                val totalDueString = parkingTotal.text.toString()
+                    .replace("Total due: $", "")
+                    .trim()
+
+                ParkingSession.totalDue = totalDueString.toDouble()
+
                 // Create an Intent to navigate to the PaymentOptions activity
                 val intent = Intent(this@ParkingInfoActivity, PaymentOptionsActivity::class.java)
                 startActivity(intent)
