@@ -39,7 +39,7 @@
         android:paddingVertical="5dp"
         android:text="Total due: $4.00"
         android:textColor="@color/white"
-        android:textSize="22sp"
+        android:textSize="34sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tapText" />
