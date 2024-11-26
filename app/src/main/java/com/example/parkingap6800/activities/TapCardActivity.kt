@@ -44,6 +44,6 @@ class TapCardActivity : AppCompatActivity() {
         // Start the animation
         animatorSet.start()
 
-        }
+    }
 
 }
