@@ -5,6 +5,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -39,6 +40,14 @@ class SwipeCardActivity : AppCompatActivity() {
 
         // Start animations
         startAnimations()
+
+        // Set an OnClickListener on the root view to detect clicks anywhere on the screen
+        val rootView = findViewById<View>(android.R.id.content)
+        rootView.setOnClickListener {
+            // Intent to switch to ParkingInfoActivity
+            val intent = Intent(this@SwipeCardActivity, ProcessingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun startAnimations() {

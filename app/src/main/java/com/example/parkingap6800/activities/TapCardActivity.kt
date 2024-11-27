@@ -7,6 +7,8 @@ import com.example.parkingap6800.R
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parkingap6800.ParkingSession
 import android.animation.ObjectAnimator
+import android.content.Intent
+import android.view.View
 import android.widget.ImageView
 
 
@@ -54,6 +56,14 @@ class TapCardActivity : AppCompatActivity() {
 
         // Start the animation
         animatorSet.start()
+
+        // Set an OnClickListener on the root view to detect clicks anywhere on the screen
+        val rootView = findViewById<View>(android.R.id.content)
+        rootView.setOnClickListener {
+            // Intent to switch to ParkingInfoActivity
+            val intent = Intent(this@TapCardActivity, ProcessingActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
