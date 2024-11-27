@@ -9,10 +9,10 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parkingap6800.R
 import com.idtech.zsdk_client.Client
-import com.idtech.zsdk_client.ClientCommandStatus
 import com.idtech.zsdk_client.StartTransactionResponseData
 import kotlinx.coroutines.*
 import com.idtech.zsdk_client.*
+import com.idtech.zsdk_client.api.StartEMVTransactionAsync
 
 class InsertCardActivity : AppCompatActivity() {
 
@@ -45,7 +45,7 @@ class InsertCardActivity : AppCompatActivity() {
 
     private fun startEMVTransaction() {
         CoroutineScope(Dispatchers.IO).launch {
-
+            Client.waitUntilConnected()
             // Enable auto-authenticate
             val authCmd = Client.SetAutoAuthenticateAsync(connectedDeviceId, true)
             val authStatus = authCmd.waitForCompletionWithTimeout(1000)
