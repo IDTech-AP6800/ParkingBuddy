@@ -16,6 +16,9 @@ import com.idtech.zsdk_client.api.StartEMVTransactionAsync
 
 class InsertCardActivity : AppCompatActivity() {
 
+    private var devices: List<String> = emptyList()
+    private var connectedDeviceId: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insert)
@@ -45,49 +48,108 @@ class InsertCardActivity : AppCompatActivity() {
 
     private fun startEMVTransaction() {
         CoroutineScope(Dispatchers.IO).launch {
-            // Enable auto-authenticate
-            val authCmd = Client.SetAutoAuthenticateAsync(connectedDeviceId, true)
-            val authStatus = authCmd.waitForCompletionWithTimeout(1000)
-            Log.d(TAG, "Enable Auto Authenticate: ${authStatus.name}")
+            try {
 
-            // Enable auto-complete
-            val completeCmd = Client.SetAutoCompleteAsync(connectedDeviceId, true)
-            val completeStatus = completeCmd.waitForCompletionWithTimeout(1000)
-            Log.d(TAG, "Enable Auto Complete: ${completeStatus.name}")
+                // Enumerate devices
+                if (enumerateDevices()) {
+                    connectedDeviceId = getDeviceId()
+                }
 
-            // Define transaction parameters
-            val amount = 0.1
-            val amountOther = 0.0
-            val transType: UByte = 0u // 0x00 = Purchase
-            val transTimeout = 100
-            val transactionTimeoutMilli = 10000L
+                if (connectedDeviceId == null) {
+                    Log.e(TAG, "No connected device available.")
+                    return@launch
+                }
 
-            // Start the transaction
-            val startTransCmd = Client.StartEMVTransactionAsync(
-                connectedDeviceId,
-                amount,
-                amountOther,
-                transType,
-                transTimeout,
-                false,
-                transactionTimeoutMilli
-            )
+                // Enable auto-authenticate
+                try {
+                    val authCmd = Client.SetAutoAuthenticateAsync(connectedDeviceId!!, true)
+                    val authStatus = authCmd.waitForCompletionWithTimeout(1000)
+                    Log.d(TAG, "Enable Auto Authenticate: ${authStatus.name}")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to enable auto-authenticate", e)
+                }
 
-            startTransCmd.waitForCompletion()
+                // Enable auto-complete
+                try {
+                    val completeCmd = Client.SetAutoCompleteAsync(connectedDeviceId!!, true)
+                    val completeStatus = completeCmd.waitForCompletionWithTimeout(1000)
+                    Log.d(TAG, "Enable Auto Complete: ${completeStatus.name}")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to enable auto-complete", e)
+                }
 
-            // Check the transaction status
-            val transStatus = startTransCmd.getCommandStatus()
-            Log.d(TAG, "Transaction Status: ${transStatus.name}")
+                // Define transaction parameters
+                val amount = 0.1
+                val amountOther = 0.0
+                val transType: UByte = 0u
+                val transTimeout = 100
+                val transactionTimeoutMilli = 10000L
 
-            // Get the result data
-            val resultData: StartTransactionResponseData? = startTransCmd.getResultData()
-            if (resultData != null) {
-                Log.d(TAG, "Transaction Response Type: ${resultData.respType}")
-                Log.d(TAG, "Transaction Attributes: ${resultData.attribute}")
-                Log.d(TAG, "Card Data: ${resultData.cardData}")
-            } else {
-                Log.e(TAG, "Transaction failed or result data is null!")
+                // Start the transaction
+                try {
+                    val startTransCmd = Client.StartEMVTransactionAsync(
+                        connectedDeviceId!!,
+                        amount,
+                        amountOther,
+                        transType,
+                        transTimeout,
+                        false,
+                        transactionTimeoutMilli
+                    )
+
+                    startTransCmd.waitForCompletion()
+
+                    // Check the transaction status
+                    val transStatus = startTransCmd.getCommandStatus()
+                    Log.d(TAG, "Transaction Status: ${transStatus.name}")
+
+                    // Get the result data
+                    val resultData: StartTransactionResponseData? = startTransCmd.getResultData()
+                    if (resultData != null) {
+                        Log.d(TAG, "Transaction Response Type: ${resultData.respType}")
+                        Log.d(TAG, "Transaction Attributes: ${resultData.attribute}")
+                        Log.d(TAG, "Card Data: ${resultData.cardData}")
+                    } else {
+                        Log.e(TAG, "Transaction failed or result data is null!")
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Transaction execution failed", e)
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error in startEMVTransaction", e)
             }
+        }
+    }
+
+    private suspend fun enumerateDevices(): Boolean {
+        return try {
+            val cmd = Client.GetDevicesAsync()
+            val status = cmd.waitForCompletionWithTimeout(3000)
+            devices = cmd.devices
+            Log.d(TAG, "GetDevices Status: $status")
+            devices.forEachIndexed { i, info ->
+                Log.d(TAG, "DeviceIndex $i; DeviceId: $info")
+            }
+            devices.isNotEmpty()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error enumerating devices", e)
+            false
+        }
+    }
+
+    private fun getDeviceId(): String? {
+        return try {
+            if (devices.isNotEmpty()) {
+                val deviceId = devices[0]
+                Log.d(TAG, "Device ID retrieved: $deviceId")
+                deviceId
+            } else {
+                Log.e(TAG, "No devices found!")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error retrieving device ID", e)
+            null
         }
     }
 
