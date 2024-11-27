@@ -45,7 +45,6 @@ class InsertCardActivity : AppCompatActivity() {
 
     private fun startEMVTransaction() {
         CoroutineScope(Dispatchers.IO).launch {
-            Client.waitUntilConnected()
             // Enable auto-authenticate
             val authCmd = Client.SetAutoAuthenticateAsync(connectedDeviceId, true)
             val authStatus = authCmd.waitForCompletionWithTimeout(1000)
