@@ -82,19 +82,15 @@ class InsertCardActivity : AppCompatActivity() {
                 val amount = 0.1
                 val amountOther = 0.0
                 val transType: UByte = 0u
-                val transTimeout = 100
-                val transactionTimeoutMilli = 10000L
+                val transTimeout: UByte = 100u
+                val transInterfaceType: Int = 1 // 1 for MSR, 2 for CTLS, and 4 for EMV
 
                 // Start the transaction
                 try {
-                    val startTransCmd = Client.StartEMVTransactionAsync(
+                    val startTransCmd = Client.StartTransactionAsync(
                         connectedDeviceId!!,
-                        amount,
-                        amountOther,
-                        transType,
-                        transTimeout,
-                        false,
-                        transactionTimeoutMilli
+                        amount, amountOther, transType, transTimeout,
+                        transInterfaceType.toUByte(), 3000
                     )
 
                     startTransCmd.waitForCompletion()
