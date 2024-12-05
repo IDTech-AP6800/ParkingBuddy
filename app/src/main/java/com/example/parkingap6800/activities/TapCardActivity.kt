@@ -2,7 +2,7 @@ package com.example.parkingap6800.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parkingap6800.R
 import com.idtech.zsdk_client.Client
@@ -22,13 +22,6 @@ class TapCardActivity : AppCompatActivity() {
         // Initialize the NavigationBar class to handle navigation bar functionality
         NavigationBar(this)
 
-        // Set an OnClickListener on the root view to detect clicks anywhere on the screen
-        val rootView = findViewById<View>(android.R.id.content)
-        rootView.setOnClickListener {
-            val intent = Intent(this@TapCardActivity, ProcessingActivity::class.java)
-            startActivity(intent)
-        }
-
         // Start the tap transaction process
         startTapTransaction()
     }
@@ -42,7 +35,8 @@ class TapCardActivity : AppCompatActivity() {
                 }
 
                 if (connectedDeviceId == null) {
-                    // Handle case where no device is connected
+                    Log.e(TAG, "No connected device available.")
+                    showTransactionError("No device connected")
                     return@launch
                 }
 
@@ -63,30 +57,36 @@ class TapCardActivity : AppCompatActivity() {
 
                 if (status.name == "Completed") {
                     // Transaction completed successfully
-                    moveToPaymentSuccessPage()
+                    Log.d(TAG, "Transaction completed successfully.")
+                    moveToProcessingPage()
                 } else {
                     // Handle transaction failure
-                    showTransactionError()
+                    Log.e(TAG, "Transaction failed: ${status.name}")
+                    showTransactionError("Transaction failed: ${status.name}")
                 }
             } catch (e: Exception) {
                 // Handle error during the transaction
+                Log.e(TAG, "Transaction error: ${e.message}", e)
+                showTransactionError("Transaction error: ${e.message}")
             }
         }
     }
 
-    private fun moveToPaymentSuccessPage() {
-        // Switch to PaymentSuccessActivity
+    private fun moveToProcessingPage() {
+        // Switch to ProcessingActivity
         CoroutineScope(Dispatchers.Main).launch {
-            val intent = Intent(this@TapCardActivity, PaymentSuccessActivity::class.java)
+            val intent = Intent(this@TapCardActivity, ProcessingActivity::class.java)
             startActivity(intent)
             finish() // Optionally finish this activity to prevent going back
         }
     }
 
-    private fun showTransactionError() {
-        // You can handle transaction errors here, for example:
+    private fun showTransactionError(message: String) {
+        // Handle transaction error
         CoroutineScope(Dispatchers.Main).launch {
-            // Show a message or navigate to an error page
+            // Show a message to the user
+            Log.e(TAG, "Transaction Error: $message")
+            // Optionally, navigate to an error page or display a dialog
         }
     }
 
@@ -97,6 +97,7 @@ class TapCardActivity : AppCompatActivity() {
             devices = cmd.devices
             devices.isNotEmpty()
         } catch (e: Exception) {
+            Log.e(TAG, "Error enumerating devices: ${e.message}", e)
             false
         }
     }
@@ -105,8 +106,12 @@ class TapCardActivity : AppCompatActivity() {
         return try {
             if (devices.isNotEmpty()) {
                 devices[0]
-            } else null
+            } else {
+                Log.e(TAG, "No devices found!")
+                null
+            }
         } catch (e: Exception) {
+            Log.e(TAG, "Error retrieving device ID: ${e.message}", e)
             null
         }
     }
