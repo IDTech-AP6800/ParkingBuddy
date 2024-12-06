@@ -15,11 +15,11 @@
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activities.ParkingInfoActivity"
@@ -50,22 +50,16 @@
             android:exported="true" />
         <activity
             android:name=".activities.ReceiptQrActivity"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activities.ReceiptEmailActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
+        <activity
+            android:name=".activities.ReceiptPhoneActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.ReceiptSentActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
