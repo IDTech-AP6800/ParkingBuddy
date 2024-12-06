@@ -51,6 +51,9 @@
         <activity
             android:name=".activities.ReceiptPhoneActivity"
             android:exported="true" />
+        <activity
+            android:name=".activities.ReceiptSentActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
