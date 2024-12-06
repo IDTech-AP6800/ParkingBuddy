@@ -23,7 +23,7 @@ class PaymentSuccessActivity : AppCompatActivity() {
         // Navigate to MainActivity after 30 seconds
         Handler(Looper.getMainLooper()).postDelayed({
             navigateToMainActivity()
-        }, 30000) // 30000 milliseconds = 30 seconds
+        }, 10000) // 10000 milliseconds = 10 seconds
 
         // Find the ellipse ImageView by its ID
         var ellipseGlow = findViewById<ImageView>(R.id.ellipse_glow)
