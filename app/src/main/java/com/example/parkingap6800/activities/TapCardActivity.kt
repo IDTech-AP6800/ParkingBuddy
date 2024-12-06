@@ -6,8 +6,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parkingap6800.R
 import com.idtech.zsdk_client.Client
-import com.idtech.zsdk_client.*
-import com.idtech.zsdk_client.api.ActivateCtlsTransactionAsync
+import com.idtech.zsdk_client.GetDevicesAsync
+import com.idtech.zsdk_client.SetAutoAuthenticateAsync
+import com.idtech.zsdk_client.SetAutoCompleteAsync
+import com.idtech.zsdk_client.StartTransactionAsync
+import com.idtech.zsdk_client.StartTransactionResponseData
 import kotlinx.coroutines.*
 
 class TapCardActivity : AppCompatActivity() {
@@ -29,6 +32,7 @@ class TapCardActivity : AppCompatActivity() {
     private fun startTapTransaction() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
+
                 // Enumerate devices
                 if (enumerateDevices()) {
                     connectedDeviceId = getDeviceId()
@@ -36,68 +40,83 @@ class TapCardActivity : AppCompatActivity() {
 
                 if (connectedDeviceId == null) {
                     Log.e(TAG, "No connected device available.")
-                    showTransactionError("No device connected")
                     return@launch
                 }
 
+                // Enable auto-authenticate
+                try {
+                    val authCmd = Client.SetAutoAuthenticateAsync(connectedDeviceId!!, true)
+                    val authStatus = authCmd.waitForCompletionWithTimeout(1000)
+                    Log.d(TAG, "Enable Auto Authenticate: ${authStatus.name}")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to enable auto-authenticate", e)
+                }
+
+                // Enable auto-complete
+                try {
+                    val completeCmd = Client.SetAutoCompleteAsync(connectedDeviceId!!, true)
+                    val completeStatus = completeCmd.waitForCompletionWithTimeout(1000)
+                    Log.d(TAG, "Enable Auto Complete: ${completeStatus.name}")
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to enable auto-complete", e)
+                }
+
                 // Define transaction parameters
-                val timeout = 30.toUByte() // 30 seconds timeout
-                val tlvData = arrayOf<UByte>(
-                    0xdfu, 0xefu, 0x3cu, 0x03u, 0x01u, 0x00u, 0x60u // Example TLV data
-                )
+                val amount = 0.1
+                val amountOther = 0.0
+                val transType: UByte = 0u
+                val transTimeout: UByte = 100u
+                val transInterfaceType: Int = 2 // 1 for MSR, 2 for CTLS, and 4 for EMV
 
-                // Start the contactless transaction
-                val cmd = Client.ActivateCtlsTransactionAsync(
-                    connectedDeviceId!!, timeout, tlvData
-                )
-                cmd.waitForCompletionWithTimeout(10000) // Wait for the transaction to complete
+                // Start the transaction
+                try {
+                    val startTransCmd = Client.StartTransactionAsync(
+                        connectedDeviceId!!,
+                        amount, amountOther, transType, transTimeout,
+                        transInterfaceType.toUByte(), 3000
+                    )
 
-                // Check the transaction status
-                val status = cmd.getCommandStatus()
+                    startTransCmd.waitForCompletion()
 
-                if (status.name == "Completed") {
-                    // Transaction completed successfully
-                    Log.d(TAG, "Transaction completed successfully.")
-                    moveToProcessingPage()
-                } else {
-                    // Handle transaction failure
-                    Log.e(TAG, "Transaction failed: ${status.name}")
-                    showTransactionError("Transaction failed: ${status.name}")
+                    // Check the transaction status
+                    val transStatus = startTransCmd.getCommandStatus()
+                    Log.d(TAG, "Transaction Status: ${transStatus.name}")
+
+                    // Get the result data
+                    val resultData: StartTransactionResponseData? = startTransCmd.getResultData()
+                    if (resultData != null) {
+                        Log.d(TAG, "Transaction Response Type: ${resultData.respType}")
+                        Log.d(TAG, "Transaction Attributes: ${resultData.attribute}")
+                        Log.d(TAG, "Card Data: ${resultData.cardData}")
+
+                        // If transaction succeeds, navigate to ProcessingActivity
+                        withContext(Dispatchers.Main) {
+                            navigateToProcessingActivity()
+                        }
+                    } else {
+                        Log.e(TAG, "Transaction failed or result data is null!")
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Transaction execution failed", e)
                 }
             } catch (e: Exception) {
-                // Handle error during the transaction
-                Log.e(TAG, "Transaction error: ${e.message}", e)
-                showTransactionError("Transaction error: ${e.message}")
+                Log.e(TAG, "Error in startEMVTransaction", e)
             }
-        }
-    }
-
-    private fun moveToProcessingPage() {
-        // Switch to ProcessingActivity
-        CoroutineScope(Dispatchers.Main).launch {
-            val intent = Intent(this@TapCardActivity, ProcessingActivity::class.java)
-            startActivity(intent)
-            finish() // Optionally finish this activity to prevent going back
-        }
-    }
-
-    private fun showTransactionError(message: String) {
-        // Handle transaction error
-        CoroutineScope(Dispatchers.Main).launch {
-            // Show a message to the user
-            Log.e(TAG, "Transaction Error: $message")
-            // Optionally, navigate to an error page or display a dialog
         }
     }
 
     private suspend fun enumerateDevices(): Boolean {
         return try {
             val cmd = Client.GetDevicesAsync()
-            cmd.waitForCompletionWithTimeout(3000)
+            val status = cmd.waitForCompletionWithTimeout(3000)
             devices = cmd.devices
+            Log.d(TAG, "GetDevices Status: $status")
+            devices.forEachIndexed { i, info ->
+                Log.d(TAG, "DeviceIndex $i; DeviceId: $info")
+            }
             devices.isNotEmpty()
         } catch (e: Exception) {
-            Log.e(TAG, "Error enumerating devices: ${e.message}", e)
+            Log.e(TAG, "Error enumerating devices", e)
             false
         }
     }
@@ -105,18 +124,26 @@ class TapCardActivity : AppCompatActivity() {
     private fun getDeviceId(): String? {
         return try {
             if (devices.isNotEmpty()) {
-                devices[0]
+                val deviceId = devices[0]
+                Log.d(TAG, "Device ID retrieved: $deviceId")
+                deviceId
             } else {
                 Log.e(TAG, "No devices found!")
                 null
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error retrieving device ID: ${e.message}", e)
+            Log.e(TAG, "Error retrieving device ID", e)
             null
         }
     }
 
+    private fun navigateToProcessingActivity() {
+        val intent = Intent(this, ProcessingActivity::class.java)
+        startActivity(intent)
+        finish() // Optional: Close TapCardActivity to prevent user from navigating back
+    }
+
     companion object {
-        private const val TAG = "TapCardActivity"
+        private const val TAG = "InsertCardActivity" // Define a tag for easier filtering in Logcat
     }
 }
