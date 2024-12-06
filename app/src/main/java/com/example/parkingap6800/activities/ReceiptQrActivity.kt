@@ -1,4 +1,12 @@
 package com.example.parkingap6800.activities
 
-class ReceiptQrActivity {
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.parkingap6800.R
+
+class ReceiptQrActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_receipt_qr)
+    }
 }
