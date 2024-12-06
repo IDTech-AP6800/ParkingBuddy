@@ -20,4 +20,5 @@
     <string name="tap_card_here">Tap your card on the screen</string>
     <string name="scan_qr_code_text">Scan your QR code below</string>
     <string name="camera_image_placeholder">Camera Image Placeholder\n</string>
+    <string name="receipt_sent_text">Your receipt \nhas been sent!</string>
 </resources>

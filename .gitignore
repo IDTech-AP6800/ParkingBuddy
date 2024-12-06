@@ -14,4 +14,7 @@
 .cxx
 local.properties
 .idea/
+<<<<<<< HEAD
 .idea/misc.xml
+=======
+>>>>>>> origin/layouts
