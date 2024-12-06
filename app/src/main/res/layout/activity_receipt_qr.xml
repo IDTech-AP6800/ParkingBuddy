@@ -48,4 +48,19 @@
         app:layout_constraintTop_toBottomOf="@+id/scanText"
         app:srcCompat="@drawable/qr_code_receipt"/>
 
+    <!-- Continue button -->
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="146dp"
+        android:layout_height="48dp"
+        android:layout_marginVertical="30dp"
+        android:background="@drawable/continue_button"
+        android:gravity="center"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qrCode" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

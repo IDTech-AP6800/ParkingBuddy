@@ -46,12 +46,12 @@
         android:text="Enter Email Address"
         android:textColor="@color/design_default_color_on_primary"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/emailAddressInfoBox"
-        app:layout_constraintStart_toStartOf="@id/emailAddressInfoBox"/>
+        app:layout_constraintBottom_toTopOf="@id/emailAddressTextBox"
+        app:layout_constraintStart_toStartOf="@id/emailAddressTextBox"/>
 
     <!-- Email Address Text Box -->
     <EditText
-        android:id="@+id/emailAddressInfoBox"
+        android:id="@+id/emailAddressTextBox"
         android:layout_width="385dp"
         android:layout_height="63dp"
         android:background="@drawable/dashed_border"
@@ -66,5 +66,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!--    continue button -->
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="146dp"
+        android:layout_height="48dp"
+        android:layout_marginVertical="30dp"
+        android:background="@drawable/continue_button"
+        android:gravity="center"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailAddressTextBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
