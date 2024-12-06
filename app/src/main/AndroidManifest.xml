@@ -23,29 +23,43 @@
         </activity>
         <activity
             android:name=".activities.ParkingInfoActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activities.PaymentOptionsActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".activities.InsertCardActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activities.ProcessingActivity"
-            android:exported="true"/>
+            android:exported="true" />
+        <activity
+            android:name=".activities.InsertCardActivity"
+            android:exported="true" />
         <activity
             android:name=".activities.SwipeCardActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activities.TapCardActivity"
-            android:exported="true"/>
+            android:exported="true" />
+        <activity
+            android:name=".activities.QrCodeActivity"
+            android:exported="true" />
         <activity
             android:name=".activities.PaymentFailedActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activities.PaymentSuccessActivity"
-            android:exported="true"/>
-
+            android:exported="true" />
+        <activity
+            android:name=".activities.ReceiptQrActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.ReceiptEmailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.ReceiptPhoneActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.ReceiptSentActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

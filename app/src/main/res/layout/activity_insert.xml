@@ -10,22 +10,24 @@
         layout="@layout/background"/>
 
     <!-- Navigation Bar -->
-    <include
-        layout="@layout/navigation_bar"/>
 
     <!-- Insert Card Text -->
+    <include layout="@layout/navigation_bar" />
+
     <TextView
         android:id="@+id/tapToGetStarted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/totalDue"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/exo_medium"
         android:text="@string/insert_card_prompt"
         android:textColor="@color/white"
         android:textSize="34sp" />
 
-    <!--  Eclipse Glow  -->
+    <!--  Ellipse Glow  -->
     <ImageView
         android:id="@+id/ellipseGlow"
         android:layout_width="wrap_content"
@@ -38,26 +40,36 @@
 
     <!-- Amount Due Text -->
     <TextView
-        android:id="@+id/amountDue"
+        android:id="@+id/totalDue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignBottom="@+id/swipeIndication"
+        android:layout_alignBottom="@+id/cardIcon"
         android:layout_marginBottom="140dp"
         android:fontFamily="@font/exo_medium"
-        android:text="Amount Due: $6.00"
+        android:text="Total Due:"
         android:textColor="@color/white"
         android:textSize="34sp" />
 
     <!-- Card Icon -->
+<!--    <ImageView-->
+<!--        android:id="@+id/cardIcon"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_alignBottom="@+id/insertArrow"-->
+<!--        android:layout_marginBottom="80dp"-->
+<!--        app:srcCompat="@drawable/components_insert_indication_card" />-->
+
     <ImageView
-        android:id="@+id/swipeIndication"
+        android:id="@+id/cardIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignBottom="@+id/insertArrow"
         android:layout_marginBottom="80dp"
-        app:srcCompat="@drawable/components_insert_indication_card" />
+        app:srcCompat="@drawable/insert_card_animation" />
+
 
     <!-- Down Arrow Icon -->
     <ImageView

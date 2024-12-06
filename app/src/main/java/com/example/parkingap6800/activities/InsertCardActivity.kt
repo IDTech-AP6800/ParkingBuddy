@@ -1,11 +1,14 @@
 package com.example.parkingap6800.activities
 
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.parkingap6800.ParkingSession
 import com.example.parkingap6800.R
 import com.idtech.zsdk_client.Client
 import com.idtech.zsdk_client.StartTransactionResponseData
@@ -18,12 +21,29 @@ class InsertCardActivity : AppCompatActivity() {
     private var devices: List<String> = emptyList()
     private var connectedDeviceId: String? = null
 
+    // Declare a variable of type AnimationDrawable to hold the frame-by-frame animation
+    // which will be initialized later by retrieving the drawable from the ImageView.
+    private lateinit var cardAniVar: AnimationDrawable
+
+    // Declare a variable of type ImageView to reference the ImageView widget
+    // (which will be initialized later by finding it in the layout).
+    private lateinit var iViewVar: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insert)
 
         // Initialize the NavigationBar class to handle the navigation bar functionality
         NavigationBar(this)
+
+        // Retrieve the total due amount from the ParkingSession singleton class
+        val totalDue = ParkingSession.totalDue
+
+        // Find the TextView responsible for displaying the total due amount in the layout
+        val totalDueTextView = findViewById<TextView>(R.id.totalDue)
+
+        // Set the text of the TextView to display the total due amount
+        totalDueTextView.text = "Total due: $$totalDue"
 
         // Set an OnClickListener on the root view to detect clicks anywhere on the screen
         val rootView = findViewById<View>(android.R.id.content)
@@ -102,6 +122,19 @@ class InsertCardActivity : AppCompatActivity() {
         val intent = Intent(this, ProcessingActivity::class.java)
         startActivity(intent)
         finish()
+
+        // Initialize iViewVar by finding the ImageView inside the XML with ID cardIcon
+        iViewVar = findViewById(R.id.cardIcon)
+
+        // Initialize cardAniVar by getting the drawable from the ImageView
+        cardAniVar = iViewVar.drawable as AnimationDrawable
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        // Start the animation
+        cardAniVar.start()
     }
 
     companion object {

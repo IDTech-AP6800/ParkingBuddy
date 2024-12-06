@@ -1,5 +1,6 @@
 package com.example.parkingap6800.activities
 
+import com.example.parkingap6800.ParkingSession
 import com.example.parkingap6800.R
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -8,6 +9,7 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.idtech.zsdk_client.Client
@@ -36,6 +38,15 @@ class SwipeCardActivity : AppCompatActivity() {
         // Initialize the NavigationBar class to handle the navigation bar functionality
         NavigationBar(this)
 
+        // Retrieve the total due amount from the ParkingSession singleton class
+        val totalDue = ParkingSession.totalDue
+
+        // Find the TextView responsible for displaying the total due amount in the layout
+        val totalDueTextView = findViewById<TextView>(R.id.totalDue)
+
+        // Set the text of the TextView to display the total due amount
+        totalDueTextView.text = "Total due: $$totalDue"
+
         // Initialize views
         swipeArrow = findViewById(R.id.swipeArrow)
         swipeIndication = findViewById(R.id.swipeIndication)
@@ -45,20 +56,28 @@ class SwipeCardActivity : AppCompatActivity() {
 
         // Start the swipe transaction process
         startSwipeCardTransaction()
+
+        // Set an OnClickListener on the root view to detect clicks anywhere on the screen
+        val rootView = findViewById<View>(android.R.id.content)
+        rootView.setOnClickListener {
+            // Intent to switch to ParkingInfoActivity
+            val intent = Intent(this@SwipeCardActivity, ProcessingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun startAnimations() {
         // Swipe Indication Animations
-        val moveDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 700f).apply {
-            duration = 1500
+        val moveDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 400f).apply {
+            duration = 700
         }
 
-        val pauseDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 700f, 700f).apply {
-            duration = 1000
-        }
-
-        val moveUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 700f, 0f).apply {
+        val pauseDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 400f, 400f).apply {
             duration = 500
+        }
+
+        val moveUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 400f, 0f).apply {
+            duration = 400
         }
 
         val pauseUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 0f).apply {
@@ -76,8 +95,8 @@ class SwipeCardActivity : AppCompatActivity() {
         }
 
         // Swipe Arrow Animation
-        ObjectAnimator.ofFloat(swipeArrow, View.TRANSLATION_X, -20f, 0f).apply {
-            duration = 1000
+        ObjectAnimator.ofFloat(swipeArrow, View.TRANSLATION_X, -10f, -0f).apply {
+            duration = 2000
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE
             start()

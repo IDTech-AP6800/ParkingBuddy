@@ -32,8 +32,14 @@ class PaymentOptionsActivity : AppCompatActivity() {
         //Tap Option Listener
         val tapOption = findViewById<LinearLayout>(R.id.tap_option)
         tapOption.setOnClickListener {
-            Log.d("PaymentOptionsActivity", "Tap option clicked")
             val intent = Intent(this@PaymentOptionsActivity, TapCardActivity::class.java)
+            startActivity(intent)
+        }
+
+        //QR code Option Listener
+        val qrcodeOption = findViewById<LinearLayout>(R.id.qr_code_option)
+        qrcodeOption.setOnClickListener {
+            val intent = Intent(this@PaymentOptionsActivity, QrCodeActivity::class.java)
             startActivity(intent)
         }
     }

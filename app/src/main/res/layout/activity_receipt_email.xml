@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ReceiptEmailActivity">
+
+    <!-- Background -->
+    <include
+        layout="@layout/background"/>
+
+    <!-- Green Shadow for Text -->
+    <ImageView
+        android:id="@+id/greenProcessingBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/components_green_background_text" />
+
+    <!-- Please Enter Email Text -->
+    <TextView
+        android:id="@+id/promptEmailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:gravity="center"
+        android:text="Please enter \nemail below to \nreceive receipt"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/exo_medium"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Email Address Text -->
+    <TextView
+        android:id="@+id/emailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/exo_bold"
+        android:text="Enter Email Address"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/emailAddressTextBox"
+        app:layout_constraintStart_toStartOf="@id/emailAddressTextBox"/>
+
+    <!-- Email Address Text Box -->
+    <EditText
+        android:id="@+id/emailAddressTextBox"
+        android:layout_width="385dp"
+        android:layout_height="63dp"
+        android:background="@drawable/dashed_border"
+        android:fontFamily="@font/exo_bold"
+        android:inputType="text"
+        android:letterSpacing=".5"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!--    continue button -->
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="146dp"
+        android:layout_height="48dp"
+        android:layout_marginVertical="30dp"
+        android:background="@drawable/continue_button"
+        android:gravity="center"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailAddressTextBox" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
