@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Background -->
     <include
-        layout="@layout/background"/>
+        android:id="@+id/include"
+        layout="@layout/background" />
 
     <!-- Green Shadow for Text -->
     <ImageView
@@ -35,14 +37,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Loading Circle Image -->
-    <ImageView
-        android:id="@+id/loadingCircle"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greenProcessingBackground"
-        app:srcCompat="@drawable/components_loading_circle" />
+<!--    <ImageView-->
+<!--        android:id="@+id/loadingCircle"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/greenProcessingBackground"-->
+<!--        app:srcCompat="@drawable/components_loading_circle" />-->
 
     <TextView
         android:id="@+id/loadingText"
@@ -52,9 +54,20 @@
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:fontFamily="@font/exo_bold"
-        app:layout_constraintTop_toTopOf="@id/loadingCircle"
-        app:layout_constraintBottom_toBottomOf="@id/loadingCircle"
-        app:layout_constraintStart_toStartOf="@id/loadingCircle"
-        app:layout_constraintEnd_toEndOf="@id/loadingCircle" />
+        app:layout_constraintTop_toTopOf="@id/loadingBar"
+        app:layout_constraintBottom_toBottomOf="@id/loadingBar"
+        app:layout_constraintStart_toStartOf="@id/loadingBar"
+        app:layout_constraintEnd_toEndOf="@id/loadingBar" />
+
+    <ProgressBar
+        android:id="@+id/loadingBar"
+        android:layout_width="229dp"
+        android:layout_height="223dp"
+        android:layout_marginTop="404dp"
+        android:indeterminate="true"
+        android:indeterminateTint="#00FF00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
