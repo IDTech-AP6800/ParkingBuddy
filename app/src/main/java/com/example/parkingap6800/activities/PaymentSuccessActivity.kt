@@ -2,8 +2,10 @@ package com.example.parkingap6800.activities
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parkingap6800.R
 
@@ -43,5 +45,26 @@ class PaymentSuccessActivity : AppCompatActivity() {
 
         // Start the animation
         animatorSet.start()
+
+        //QR receipt option event listener
+        val qrOption = findViewById<LinearLayout>(R.id.qr_code_option)
+        qrOption.setOnClickListener {
+            val intent = Intent(this@PaymentSuccessActivity, ReceiptQrActivity::class.java)
+            startActivity(intent)
+        }
+
+        //Email receipt option event listener
+        val emailOption = findViewById<LinearLayout>(R.id.email_option)
+        emailOption.setOnClickListener {
+            val intent = Intent(this@PaymentSuccessActivity, ReceiptEmailActivity::class.java)
+            startActivity(intent)
+        }
+
+        //Phone number receipt option event listener
+        val smsOption = findViewById<LinearLayout>(R.id.sms_option)
+        smsOption.setOnClickListener {
+            val intent = Intent(this@PaymentSuccessActivity, ReceiptPhoneActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
