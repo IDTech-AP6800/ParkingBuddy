@@ -80,6 +80,9 @@ class QrCodeActivity : AppCompatActivity() {
         val previewView: PreviewView = findViewById(R.id.viewFinder)
         previewView.setController(cameraController)
 
+        /* The back camera is the one for qr codes
+           If you want to use the front camera, change the selector
+           to use DEFAULT_FRONT_CAMERA */
         cameraController.cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     }
     private fun requestPermissions() {
