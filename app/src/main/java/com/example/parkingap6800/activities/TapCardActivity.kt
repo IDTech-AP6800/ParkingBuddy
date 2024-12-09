@@ -28,7 +28,7 @@ class TapCardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tap)
 
         // Initialize the NavigationBar class to handle navigation bar functionality
-        NavigationBar(this)
+        NavigationBar(this) {connectedDeviceId}
 
         // Retrieve the total due amount from the ParkingSession singleton class
         val totalDue = ParkingSession.totalDue

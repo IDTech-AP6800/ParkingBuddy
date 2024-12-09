@@ -8,10 +8,12 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import com.idtech.zsdk_client.CancelTransactionAsync
 import com.idtech.zsdk_client.Client
 import com.idtech.zsdk_client.GetDevicesAsync
 import com.idtech.zsdk_client.SetAutoAuthenticateAsync
@@ -36,7 +38,7 @@ class SwipeCardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_swipe)
 
         // Initialize the NavigationBar class to handle the navigation bar functionality
-        NavigationBar(this)
+        NavigationBar(this) { connectedDeviceId }
 
         // Retrieve the total due amount from the ParkingSession singleton class
         val totalDue = ParkingSession.totalDue
@@ -57,26 +59,19 @@ class SwipeCardActivity : AppCompatActivity() {
         // Start the swipe transaction process
         startSwipeCardTransaction()
 
-        // Set an OnClickListener on the root view to detect clicks anywhere on the screen
-        val rootView = findViewById<View>(android.R.id.content)
-        rootView.setOnClickListener {
-            // Intent to switch to ParkingInfoActivity
-            val intent = Intent(this@SwipeCardActivity, ProcessingActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun startAnimations() {
         // Swipe Indication Animations
-        val moveDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 400f).apply {
+        val moveDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 0f, 350f).apply {
             duration = 700
         }
 
-        val pauseDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 400f, 400f).apply {
+        val pauseDown = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 350f, 350f).apply {
             duration = 500
         }
 
-        val moveUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 400f, 0f).apply {
+        val moveUp = ObjectAnimator.ofFloat(swipeIndication, View.TRANSLATION_Y, 350f, 0f).apply {
             duration = 400
         }
 
@@ -101,6 +96,15 @@ class SwipeCardActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
             start()
         }
+    }
+
+    private fun cancelTransaction() {
+        connectedDeviceId?.let { connectedDeviceId ->
+            CoroutineScope(Dispatchers.IO).launch {
+                Client.CancelTransactionAsync(connectedDeviceId!!)
+                Log.d(TAG, "Transaction canceled successfully.")
+            }
+        } ?: Log.d(TAG, "No connected device ID available for canceling transaction.")
     }
 
 private fun startSwipeCardTransaction() {

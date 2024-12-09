@@ -7,8 +7,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parkingap6800.R
+import com.idtech.zsdk_client.CancelTransactionAsync
+import com.idtech.zsdk_client.Client
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class NavigationBar(activity: AppCompatActivity) {
+class NavigationBar(activity: AppCompatActivity, private val getDeviceId: (() -> String?)? = null) {
 
     // Initialize "homeButton" as an ImageView representing the home icon
     private val homeButton: ImageView = activity.findViewById<LinearLayout>(R.id.home_button)
@@ -19,8 +24,9 @@ class NavigationBar(activity: AppCompatActivity) {
         .findViewById(R.id.back_button_image)
 
     // Initialize "accessibilityButton" as an ImageView representing the accessibility icon
-    private val accessibilityButton: ImageView = activity.findViewById<LinearLayout>(R.id.accessibility_button)
-        .findViewById(R.id.accessibility_button_image)
+    private val accessibilityButton: ImageView =
+        activity.findViewById<LinearLayout>(R.id.accessibility_button)
+            .findViewById(R.id.accessibility_button_image)
 
     // Define a constant string "TAG" for easier filtering in Logcat
     companion object {
@@ -30,11 +36,9 @@ class NavigationBar(activity: AppCompatActivity) {
     // Run this code upon instance of class creation
     init {
         Log.d(TAG, "Nav bar is loaded!!")
-
-        // Set up OnClickListener for home button
         homeButton.setOnClickListener {
-            // Print to console when button is clicked (optional for debugging)
-             Log.d(TAG, "Home button clicked!")
+            //Cancel Transaction for Transaction Activity if Home Button is Clicked
+            cancelTransaction()
 
             // Create an Intent to start MainActivity
             val intent = Intent(activity, MainActivity::class.java)
@@ -49,13 +53,26 @@ class NavigationBar(activity: AppCompatActivity) {
             activity.finish()
         }
 
-        // Set up OnClickListener for back button
         backButton.setOnClickListener {
-            // Print to console when button is clicked (optional for debugging)
-            Log.d(TAG, "Back button clicked!")
+            //Cancel Transaction for Transaction Activity if Back Button is Clicked
+            cancelTransaction()
 
             // Handle back navigation
             activity.onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    private fun cancelTransaction() {
+        getDeviceId?.invoke()?.let { deviceId ->
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    Client.CancelTransactionAsync(deviceId)
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to cancel transaction: ${e.message}")
+                }
+            }
+        } ?: run {
+            Log.d(TAG, "No connectedDeviceId provided, skipping cancel transaction.")
         }
     }
 }

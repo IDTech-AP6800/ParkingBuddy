@@ -35,7 +35,7 @@ class InsertCardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_insert)
 
         // Initialize the NavigationBar class to handle the navigation bar functionality
-        NavigationBar(this)
+        NavigationBar(this) { connectedDeviceId }
 
         // Retrieve the total due amount from the ParkingSession singleton class
         val totalDue = ParkingSession.totalDue
@@ -46,12 +46,6 @@ class InsertCardActivity : AppCompatActivity() {
         // Set the text of the TextView to display the total due amount
         totalDueTextView.text = "Total due: $$totalDue"
 
-        // Set an OnClickListener on the root view to detect clicks anywhere on the screen
-        val rootView = findViewById<View>(android.R.id.content)
-        rootView.setOnClickListener {
-            val intent = Intent(this@InsertCardActivity, ProcessingActivity::class.java)
-            startActivity(intent)
-        }
 
         // Animation functionality
         val imageView5 = findViewById<ImageView>(R.id.swipeIndication)
