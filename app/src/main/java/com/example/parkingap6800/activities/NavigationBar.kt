@@ -62,6 +62,7 @@ class NavigationBar(activity: AppCompatActivity, private val getDeviceId: (() ->
         }
     }
 
+    //Cancel Transaction Command for Transaction Actitivies
     private fun cancelTransaction() {
         getDeviceId?.invoke()?.let { deviceId ->
             CoroutineScope(Dispatchers.IO).launch {
