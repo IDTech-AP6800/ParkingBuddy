@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:oneshot="false">
 
-    <item android:drawable="@drawable/components_card_insert_1" android:duration="500" />
-    <item android:drawable="@drawable/components_card_insert_2" android:duration="500" />
-    <item android:drawable="@drawable/components_card_insert_3" android:duration="500" />
-
+    <item android:drawable="@drawable/components_card_insert_1v2" android:duration="420" />
+    <item android:drawable="@drawable/components_card_insert_2v2" android:duration="420" />
+    <item android:drawable="@drawable/components_card_insert_3v2" android:duration="420" />
+    <item android:drawable="@drawable/components_card_insert_2v2" android:duration="420" />
+    <item android:drawable="@drawable/components_card_insert_1v2" android:duration="420" />
 </animation-list>
