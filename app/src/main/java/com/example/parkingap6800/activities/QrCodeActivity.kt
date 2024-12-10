@@ -9,6 +9,8 @@ import com.example.parkingap6800.R
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import android.Manifest
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -99,8 +101,10 @@ class QrCodeActivity : AppCompatActivity() {
                     //If it has a value, that is it scanner
                     Log.d(TAG, "startCamera:\ncodeValue:$barcodeValue" +
                             "\nbarcodeFormat:$barcodeFormat")
-                    val intent = Intent(this@QrCodeActivity, ProcessingActivity::class.java)
-                    startActivity(intent)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val intent = Intent(this@QrCodeActivity, ProcessingActivity::class.java)
+                        startActivity(intent)
+                    }, 2000)
                 }
             }
 
