@@ -58,7 +58,7 @@
         android:layout_height="63dp"
         android:background="@drawable/dashed_border"
         android:fontFamily="@font/exo_medium"
-        android:inputType="number"
+        android:inputType="textFilter"
         android:maxLength="10"
         android:paddingStart="25dp"
         android:paddingEnd="25dp"

@@ -131,6 +131,7 @@
         android:inputType="text"
         android:letterSpacing=".5"
         android:maxLength="7"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
         android:textColor="@color/white"

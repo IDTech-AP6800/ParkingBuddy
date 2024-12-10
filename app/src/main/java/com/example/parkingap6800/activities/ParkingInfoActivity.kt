@@ -19,7 +19,6 @@ class ParkingInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parking_info)
-
         // Initialize the NavigationBar class to handle the navigation bar functionality
         NavigationBar(this)
 
@@ -35,9 +34,10 @@ class ParkingInfoActivity : AppCompatActivity() {
     }
     // Set input filter to enforce 7 character limit
     private fun setLicensePlateInputFilter() {
-        val licensePlateInfo = findViewById<EditText>(R.id.licensePlateInfo)
-        val lengthFilter: InputFilter = LengthFilter(7)
-        licensePlateInfo.filters = arrayOf(lengthFilter)
+        val editText = findViewById<EditText>(R.id.licensePlateInfo)
+        val maxLength = 7
+        val filterArray = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
+        editText.filters = filterArray
     }
 
     //Creates listener for increasing hours

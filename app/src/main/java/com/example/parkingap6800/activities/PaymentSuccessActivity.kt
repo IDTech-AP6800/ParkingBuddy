@@ -20,11 +20,6 @@ class PaymentSuccessActivity : AppCompatActivity() {
         // Initialize the NavigationBar class to handle the navigation bar functionality
         NavigationBar(this)
 
-        // Navigate to MainActivity after 30 seconds
-        Handler(Looper.getMainLooper()).postDelayed({
-            navigateToMainActivity()
-        }, 10000) // 10000 milliseconds = 10 seconds
-
         // Find the ellipse ImageView by its ID
         var ellipseGlow = findViewById<ImageView>(R.id.ellipse_glow)
 
@@ -73,11 +68,12 @@ class PaymentSuccessActivity : AppCompatActivity() {
             val intent = Intent(this@PaymentSuccessActivity, ReceiptPhoneActivity::class.java)
             startActivity(intent)
         }
-    }
 
-    private fun navigateToMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish() // Close PaymentSuccessActivity
+        //Phone number receipt option event listener
+        val noReceiptOption = findViewById<LinearLayout>(R.id.no_receipt)
+        noReceiptOption.setOnClickListener {
+            val intent = Intent(this@PaymentSuccessActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

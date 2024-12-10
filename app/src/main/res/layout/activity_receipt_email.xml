@@ -56,7 +56,7 @@
         android:layout_height="63dp"
         android:background="@drawable/dashed_border"
         android:fontFamily="@font/exo_bold"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:letterSpacing=".5"
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
