@@ -4,8 +4,11 @@ import com.example.parkingap6800.R
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.InputFilter.LengthFilter
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +30,14 @@ class ParkingInfoActivity : AppCompatActivity() {
         listenDecreaseMinutes()
         //This listener leads to the next page
         listenContinueButton()
+
+        setLicensePlateInputFilter();
+    }
+    // Set input filter to enforce 7 character limit
+    private fun setLicensePlateInputFilter() {
+        val licensePlateInfo = findViewById<EditText>(R.id.licensePlateInfo)
+        val lengthFilter: InputFilter = LengthFilter(7)
+        licensePlateInfo.filters = arrayOf(lengthFilter)
     }
 
     //Creates listener for increasing hours
