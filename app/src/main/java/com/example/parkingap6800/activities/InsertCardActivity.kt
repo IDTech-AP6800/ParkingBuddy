@@ -39,25 +39,29 @@ class InsertCardActivity : AppCompatActivity() {
 
         // Retrieve the total due amount from the ParkingSession singleton class
         val totalDue = ParkingSession.totalDue
-
         // Find the TextView responsible for displaying the total due amount in the layout
         val totalDueTextView = findViewById<TextView>(R.id.totalDue)
-
         // Set the text of the TextView to display the total due amount
         totalDueTextView.text = "Total due: $$totalDue"
-
-
-        // Animation functionality
-        val imageView5 = findViewById<ImageView>(R.id.swipeIndication)
-        val floatAnimation1 = AnimationUtils.loadAnimation(this, R.anim.float_up_down1)
-        imageView5.startAnimation(floatAnimation1)
 
         val insertarrow = findViewById<ImageView>(R.id.insertArrow)
         val floatAnimation2 = AnimationUtils.loadAnimation(this, R.anim.float_up_down2)
         insertarrow.startAnimation(floatAnimation2)
 
+        // Initialize iViewVar by finding the ImageView inside the XML with ID cardIcon
+        iViewVar = findViewById(R.id.cardIcon)
+
+        // Initialize cardAniVar by getting the drawable from the ImageView
+        cardAniVar = iViewVar.drawable as AnimationDrawable
+
         // Start the EMV transaction process
         startEMVTransaction()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Start the animation
+        cardAniVar.start()
     }
 
     private fun startEMVTransaction() {
@@ -117,19 +121,6 @@ class InsertCardActivity : AppCompatActivity() {
         val intent = Intent(this, ProcessingActivity::class.java)
         startActivity(intent)
         finish()
-
-        // Initialize iViewVar by finding the ImageView inside the XML with ID cardIcon
-        iViewVar = findViewById(R.id.cardIcon)
-
-        // Initialize cardAniVar by getting the drawable from the ImageView
-        cardAniVar = iViewVar.drawable as AnimationDrawable
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        // Start the animation
-        cardAniVar.start()
     }
 
     companion object {
