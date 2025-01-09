@@ -20,6 +20,7 @@ import androidx.camera.mlkit.vision.MlKitAnalyzer
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.PreviewView
 import com.example.parkingap6800.ParkingSession
+import com.example.parkingap6800.viewmodels.QrCodeViewModel
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
@@ -97,6 +98,13 @@ class QrCodeActivity : AppCompatActivity() {
                     barcodeResults?.getOrNull(0)?.displayValue
                 val barcodeFormat =
                     barcodeResults?.getOrNull(0)?.format
+                if ((barcodeResults == null) ||
+                    (barcodeResults.size == 0) ||
+                    (barcodeResults.first() == null)){
+                    previewView.overlay.clear()
+                    previewView.setOnTouchListener{_, _ -> false}
+                    return@MlKitAnalyzer
+                }
                 if (barcodeValue != null) {
                     //If it has a value, that is it scanner
                     Log.d(TAG, "startCamera:\ncodeValue:$barcodeValue" +
@@ -106,6 +114,12 @@ class QrCodeActivity : AppCompatActivity() {
                         startActivity(intent)
                     }, 2000)
                 }
+
+                val qrCodeViewModel = QrCodeViewModel(barcodeResults[0])
+                val qrCodeDrawable = QrCodeDrawable(qrCodeViewModel)
+                previewView.setOnTouchListener(qrCodeViewModel.qrCodeTouchCallback)
+                previewView.overlay.clear()
+                previewView.overlay.add(qrCodeDrawable)
             }
 
             )
