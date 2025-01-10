@@ -13,7 +13,7 @@ class QrCodeViewModel(barcode: Barcode) {
     /*
     This code deals with barcodes that are URLs
     Will need to change to deal with the type of information
-    that we want (what do payment qr codes return?
+    that we want (what do payment qr codes return?)
     init {
         when (barcode.valueType) {
             Barcode.TYPE_URL -> {

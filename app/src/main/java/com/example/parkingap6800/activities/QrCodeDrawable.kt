@@ -19,17 +19,7 @@ class QrCodeDrawable(qrCodeViewModel: QrCodeViewModel) : Drawable() {
         alpha = 200
     }
 
-    /*
-    Don't think I need this
-    private val contentRectPaint = Paint().apply {
-        style = Paint.Style.FILL
-        color = Color.YELLOW
-        alpha = 255
-    }*/
-
     private val qrCodeViewModel = qrCodeViewModel
-    //private val contentPadding = 25
-    //Not providing text, so I don't think we need this
 
     override fun draw(canvas: Canvas) {
         canvas.drawRect(qrCodeViewModel.boundingRect, boundingRectPaint)
