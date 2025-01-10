@@ -3,6 +3,9 @@ package com.example.parkingap6800.activities
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -35,18 +38,18 @@ class InsertCardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_insert)
 
         // Initialize the NavigationBar class to handle the navigation bar functionality
-        NavigationBar(this) { connectedDeviceId }
+        NavigationBar(this)
 
         // Retrieve the total due amount from the ParkingSession singleton class
         val totalDue = ParkingSession.totalDue
         // Find the TextView responsible for displaying the total due amount in the layout
         val totalDueTextView = findViewById<TextView>(R.id.totalDue)
         // Set the text of the TextView to display the total due amount
-        totalDueTextView.text = "Total due: $$totalDue"
+        totalDueTextView.text = String.format("Total due: $%.2f", totalDue)
 
-        val insertarrow = findViewById<ImageView>(R.id.insertArrow)
+        val insertArrow = findViewById<ImageView>(R.id.insertArrow)
         val floatAnimation2 = AnimationUtils.loadAnimation(this, R.anim.float_up_down2)
-        insertarrow.startAnimation(floatAnimation2)
+        insertArrow.startAnimation(floatAnimation2)
 
         // Initialize iViewVar by finding the ImageView inside the XML with ID cardIcon
         iViewVar = findViewById(R.id.cardIcon)
@@ -65,48 +68,57 @@ class InsertCardActivity : AppCompatActivity() {
     }
 
     private fun startEMVTransaction() {
-    CoroutineScope(Dispatchers.IO).launch {
-        // Enumerate devices
-        if (enumerateDevices()) {
-            connectedDeviceId = devices.firstOrNull()
-        }
+        CoroutineScope(Dispatchers.IO).launch {
+            // Enumerate devices
+            if (enumerateDevices()) {
+                connectedDeviceId = devices.firstOrNull()
+            }
 
-        connectedDeviceId?.let { deviceId ->
-            // Enable auto-authenticate
-            Client.SetAutoAuthenticateAsync(deviceId, true)
-                .waitForCompletionWithTimeout(1000)
+            connectedDeviceId?.let { deviceId ->
+                // Enable auto-authenticate
+                Client.SetAutoAuthenticateAsync(deviceId, true)
+                    .waitForCompletionWithTimeout(1000)
 
-            // Enable auto-complete
-            Client.SetAutoCompleteAsync(deviceId, true)
-                .waitForCompletionWithTimeout(1000)
+                // Enable auto-complete
+                Client.SetAutoCompleteAsync(deviceId, true)
+                    .waitForCompletionWithTimeout(1000)
 
-            // Define transaction parameters
-            val amount = 0.1
-            val amountOther = 0.0
-            val transType: UByte = 0u
-            val transTimeout: UByte = 100u
-            val transInterfaceType: Int = 4 // 4 for EMV (Insert)
+                // Define transaction parameters
+                val amount = 0.1
+                val amountOther = 0.0
+                val transType: UByte = 0u
+                val transTimeout: UByte = 100u
+                val transInterfaceType: Int = 4 // 4 for EMV (Insert)
 
-            // Start the transaction
-            val startTransCmd = Client.StartTransactionAsync(
-                deviceId,
-                amount, amountOther, transType, transTimeout,
-                transInterfaceType.toUByte(), 3000
-            )
+                // Start the transaction
+                val startTransCmd = Client.StartTransactionAsync(
+                    deviceId,
+                    amount, amountOther, transType, transTimeout,
+                    transInterfaceType.toUByte(), 3000
+                )
 
-            startTransCmd.waitForCompletion()
+                startTransCmd.waitForCompletion()
 
-            // Check the transaction status
-            val resultData: StartTransactionResponseData? = startTransCmd.getResultData()
-            if (resultData != null) {
-                // If transaction succeeds, navigate to ProcessingActivity
-                withContext(Dispatchers.Main) {
-                    navigateToProcessingActivity()
+                // Check the transaction status
+                val resultData: StartTransactionResponseData? = startTransCmd.getResultData()
+                if (resultData != null) {
+                    // If transaction succeeds, navigate to ProcessingActivity
+                    withContext(Dispatchers.Main) {
+                        navigateToProcessingActivity()
+                    }
                 }
             }
         }
     }
-}
+    private fun cancelTransaction() {
+        connectedDeviceId?.let { connectedDeviceId ->
+            CoroutineScope(Dispatchers.IO).launch {
+                Client.CancelTransactionAsync(connectedDeviceId!!)
+                Log.d(TAG, "Transaction canceled successfully.")
+            }
+        } ?: Log.d(TAG, "No connected device ID available for canceling transaction.")
+    }
+
 
     private suspend fun enumerateDevices(): Boolean {
         return runCatching {
@@ -121,6 +133,25 @@ class InsertCardActivity : AppCompatActivity() {
         val intent = Intent(this, ProcessingActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        //When the activity is paused, cancel transaction
+        cancelTransaction()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        //When the activity is resume, start the transaction again
+        startEMVTransaction()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancelTransaction()
     }
 
     companion object {

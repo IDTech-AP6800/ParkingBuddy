@@ -45,19 +45,19 @@
                 android:contentDescription="Home Button"/>
         </LinearLayout>
 
-        <!-- Accessibility Button -->
+        <!-- Help Button -->
         <LinearLayout
-            android:id="@+id/accessibility_button"
+            android:id="@+id/help_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/accessibility_button_image"
+                android:id="@+id/help_button_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/components_vector_accessibility"
+                android:src="@drawable/components_vector_help"
                 android:contentDescription="Accessibility Button"/>
         </LinearLayout>
     </LinearLayout>

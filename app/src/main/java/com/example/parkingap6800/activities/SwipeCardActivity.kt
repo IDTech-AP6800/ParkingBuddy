@@ -8,6 +8,8 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -38,7 +40,7 @@ class SwipeCardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_swipe)
 
         // Initialize the NavigationBar class to handle the navigation bar functionality
-        NavigationBar(this) { connectedDeviceId }
+        NavigationBar(this)
 
         // Retrieve the total due amount from the ParkingSession singleton class
         val totalDue = ParkingSession.totalDue
@@ -47,7 +49,7 @@ class SwipeCardActivity : AppCompatActivity() {
         val totalDueTextView = findViewById<TextView>(R.id.totalDue)
 
         // Set the text of the TextView to display the total due amount
-        totalDueTextView.text = "Total due: $$totalDue"
+        totalDueTextView.text = String.format("Total due: $%.2f", totalDue)
 
         // Initialize views
         swipeArrow = findViewById(R.id.swipeArrow)
@@ -107,49 +109,49 @@ class SwipeCardActivity : AppCompatActivity() {
         } ?: Log.d(TAG, "No connected device ID available for canceling transaction.")
     }
 
-private fun startSwipeCardTransaction() {
-    CoroutineScope(Dispatchers.IO).launch {
-        // Enumerate devices
-        if (enumerateDevices()) {
-            connectedDeviceId = devices.firstOrNull()
-        }
+    private fun startSwipeCardTransaction() {
+        CoroutineScope(Dispatchers.IO).launch {
+            // Enumerate devices
+            if (enumerateDevices()) {
+                connectedDeviceId = devices.firstOrNull()
+            }
 
-        connectedDeviceId?.let { deviceId ->
-            // Enable auto-authenticate
-            Client.SetAutoAuthenticateAsync(deviceId, true)
-                .waitForCompletionWithTimeout(1000)
+            connectedDeviceId?.let { deviceId ->
+                // Enable auto-authenticate
+                Client.SetAutoAuthenticateAsync(deviceId, true)
+                    .waitForCompletionWithTimeout(1000)
 
-            // Enable auto-complete
-            Client.SetAutoCompleteAsync(deviceId, true)
-                .waitForCompletionWithTimeout(1000)
+                // Enable auto-complete
+                Client.SetAutoCompleteAsync(deviceId, true)
+                    .waitForCompletionWithTimeout(1000)
 
-            // Define transaction parameters
-            val amount = 0.1
-            val amountOther = 0.0
-            val transType: UByte = 0u
-            val transTimeout: UByte = 100u
-            val transInterfaceType: Int = 1 // 1 for MSR (Swipe)
+                // Define transaction parameters
+                val amount = 0.1
+                val amountOther = 0.0
+                val transType: UByte = 0u
+                val transTimeout: UByte = 100u
+                val transInterfaceType: Int = 1 // 1 for MSR (Swipe)
 
-            // Start the transaction
-            val startTransCmd = Client.StartTransactionAsync(
-                deviceId,
-                amount, amountOther, transType, transTimeout,
-                transInterfaceType.toUByte(), 3000
-            )
+                // Start the transaction
+                val startTransCmd = Client.StartTransactionAsync(
+                    deviceId,
+                    amount, amountOther, transType, transTimeout,
+                    transInterfaceType.toUByte(), 3000
+                )
 
-            startTransCmd.waitForCompletion()
+                startTransCmd.waitForCompletion()
 
-            // Check the transaction status
-            val resultData: StartTransactionResponseData? = startTransCmd.getResultData()
-            if (resultData != null) {
-                // If transaction succeeds, navigate to ProcessingActivity
-                withContext(Dispatchers.Main) {
-                    navigateToProcessingActivity()
+                // Check the transaction status
+                val resultData: StartTransactionResponseData? = startTransCmd.getResultData()
+                if (resultData != null) {
+                    // If transaction succeeds, navigate to ProcessingActivity
+                    withContext(Dispatchers.Main) {
+                        navigateToProcessingActivity()
+                    }
                 }
             }
         }
     }
-}
 
     private suspend fun enumerateDevices(): Boolean {
         return runCatching {
@@ -164,6 +166,25 @@ private fun startSwipeCardTransaction() {
         val intent = Intent(this, ProcessingActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        //When the activity is paused, cancel transaction
+        cancelTransaction()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        //When the activity is resume, start the transaction again
+        startSwipeCardTransaction()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancelTransaction()
     }
 
     companion object {

@@ -15,8 +15,12 @@ import android.animation.AnimatorSet
 import android.widget.TextView
 import com.example.parkingap6800.ParkingSession
 import android.animation.ObjectAnimator
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import com.idtech.zsdk_client.CancelTransactionAsync
 
 class TapCardActivity : AppCompatActivity() {
 
@@ -28,7 +32,7 @@ class TapCardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tap)
 
         // Initialize the NavigationBar class to handle navigation bar functionality
-        NavigationBar(this) {connectedDeviceId}
+        NavigationBar(this)
 
         // Retrieve the total due amount from the ParkingSession singleton class
         val totalDue = ParkingSession.totalDue
@@ -37,7 +41,7 @@ class TapCardActivity : AppCompatActivity() {
         val totalDueTextView = findViewById<TextView>(R.id.totalDue)
 
         // Set the text of the TextView to display the total due amount
-        totalDueTextView.text = "Total due: $$totalDue"
+        totalDueTextView.text = String.format("Total due: $%.2f", totalDue)
 
         // Find the ellipse ImageView by its ID
         var ellipseGlow = findViewById<ImageView>(R.id.ellipse_glow)
@@ -115,6 +119,15 @@ class TapCardActivity : AppCompatActivity() {
         }
     }
 
+    private fun cancelTransaction() {
+        connectedDeviceId?.let { connectedDeviceId ->
+            CoroutineScope(Dispatchers.IO).launch {
+                Client.CancelTransactionAsync(connectedDeviceId!!)
+                Log.d(TAG, "Transaction canceled successfully.")
+            }
+        } ?: Log.d(TAG, "No connected device ID available for canceling transaction.")
+    }
+
     private suspend fun enumerateDevices(): Boolean {
         return runCatching {
             val cmd = Client.GetDevicesAsync()
@@ -128,6 +141,25 @@ class TapCardActivity : AppCompatActivity() {
         val intent = Intent(this, ProcessingActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        //When the activity is paused, cancel transaction
+        cancelTransaction()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        //When the activity is resume, start the transaction again
+        startTapTransaction()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancelTransaction()
     }
 
     companion object {

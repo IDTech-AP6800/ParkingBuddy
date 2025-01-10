@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Width License Plate = 397, Width table = 198.5 -->
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -11,10 +10,6 @@
     <include
         layout="@layout/background"/>
 
-    <include
-        layout="@layout/navigation_bar"/>
-
-    <!--Payment Options-->
     <ImageView
         android:id="@+id/ellipse_glow"
         android:layout_width="wrap_content"
@@ -31,7 +26,7 @@
         android:contentDescription="Green Glow"/>
 
     <TextView
-        android:id="@+id/payment_failed_text"
+        android:id="@+id/payment_success_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_medium"
@@ -76,13 +71,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+    <!--Receipt Options-->
     <GridLayout
         android:id="@+id/receipt_options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/payment_failed_text"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="10dp"
         android:columnCount="2"
         android:rowCount="2"

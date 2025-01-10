@@ -54,7 +54,7 @@ class QrCodeActivity : AppCompatActivity() {
         val totalDueTextView = findViewById<TextView>(R.id.totalDue)
 
         // Set the text of the TextView to display the total due amount
-        totalDueTextView.text = "Total due: $$totalDue"
+        totalDueTextView.text = String.format("Total due: $%.2f", totalDue)
 
     }
 

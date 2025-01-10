@@ -13,9 +13,6 @@ class PaymentFailedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_failed)
 
-        // Initialize the NavigationBar class to handle the navigation bar functionality
-        NavigationBar(this)
-
         // Find the ellipse ImageView by its ID
         var ellipseGlow = findViewById<ImageView>(R.id.ellipse_glow)
 

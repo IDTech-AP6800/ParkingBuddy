@@ -13,7 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NavigationBar(activity: AppCompatActivity, private val getDeviceId: (() -> String?)? = null) {
+class NavigationBar(activity: AppCompatActivity) {
 
     // Initialize "homeButton" as an ImageView representing the home icon
     private val homeButton: ImageView = activity.findViewById<LinearLayout>(R.id.home_button)
@@ -23,10 +23,9 @@ class NavigationBar(activity: AppCompatActivity, private val getDeviceId: (() ->
     private val backButton: ImageView = activity.findViewById<LinearLayout>(R.id.back_button)
         .findViewById(R.id.back_button_image)
 
-    // Initialize "accessibilityButton" as an ImageView representing the accessibility icon
-    private val accessibilityButton: ImageView =
-        activity.findViewById<LinearLayout>(R.id.accessibility_button)
-            .findViewById(R.id.accessibility_button_image)
+    // Initialize "helpButton" as an ImageView representing the help icon
+    private val helpButton: ImageView = activity.findViewById<LinearLayout>(R.id.help_button)
+        .findViewById(R.id.help_button_image)
 
     // Define a constant string "TAG" for easier filtering in Logcat
     companion object {
@@ -37,9 +36,6 @@ class NavigationBar(activity: AppCompatActivity, private val getDeviceId: (() ->
     init {
         Log.d(TAG, "Nav bar is loaded!!")
         homeButton.setOnClickListener {
-            //Cancel Transaction for Transaction Activity if Home Button is Clicked
-            cancelTransaction()
-
             // Create an Intent to start MainActivity
             val intent = Intent(activity, MainActivity::class.java)
 
@@ -54,26 +50,13 @@ class NavigationBar(activity: AppCompatActivity, private val getDeviceId: (() ->
         }
 
         backButton.setOnClickListener {
-            //Cancel Transaction for Transaction Activity if Back Button is Clicked
-            cancelTransaction()
-
             // Handle back navigation
             activity.onBackPressedDispatcher.onBackPressed()
         }
-    }
 
-    //Cancel Transaction Command for Transaction Actitivies
-    private fun cancelTransaction() {
-        getDeviceId?.invoke()?.let { deviceId ->
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    Client.CancelTransactionAsync(deviceId)
-                } catch (e: Exception) {
-                    Log.e(TAG, "Failed to cancel transaction: ${e.message}")
-                }
-            }
-        } ?: run {
-            Log.d(TAG, "No connectedDeviceId provided, skipping cancel transaction.")
+        helpButton.setOnClickListener{
+            val intent = Intent(activity, HelpActivity::class.java)
+            activity.startActivity(intent)
         }
     }
 }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Width License Plate = 397, Width table = 198.5 -->
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -14,7 +13,6 @@
     <include
         layout="@layout/navigation_bar"/>
 
-    <!--Payment Options-->
     <ImageView
         android:id="@+id/ellipse_glow"
         android:layout_width="wrap_content"
@@ -54,12 +52,13 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@id/payment_options"
+        app:layout_constraintBottom_toTopOf="@id/receipt_options"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.809" />
 
+    <!--Payment Options-->
     <GridLayout
         android:id="@+id/payment_options"
         android:layout_width="match_parent"

@@ -64,6 +64,9 @@
         <activity
             android:name=".activities.ReceiptSentActivity"
             android:exported="true" />
+        <activity
+            android:name=".activities.HelpActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

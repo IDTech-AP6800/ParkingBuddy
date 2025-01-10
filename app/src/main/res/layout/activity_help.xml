@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background -->
+    <include
+        layout="@layout/background"/>
+
+    <!-- Navigation Bar -->
+    <include layout="@layout/navigation_bar" />
+
+    <!-- Instruction Text -->
+    <TextView
+        android:id="@+id/instructionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Instructions"
+        android:textColor="@color/white"
+        android:fontFamily="@font/exo_medium"
+        android:textSize="34sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"/>
+
+    <!-- Instructions -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:layout_below="@id/instructionTitle"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/instruction_line1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.    Enter your license plate and set the desired parking hours."
+            android:textColor="@color/white"
+            android:fontFamily="@font/exo_medium"
+            android:textSize="20sp"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/instruction_line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.    Choose your preferred payment method."
+            android:textColor="@color/white"
+            android:fontFamily="@font/exo_medium"
+            android:textSize="20sp"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/instruction_line3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.    Follow the payment instructions."
+            android:textColor="@color/white"
+            android:fontFamily="@font/exo_medium"
+            android:textSize="20sp"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/instruction_line4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.    Wait for confirmation."
+            android:textColor="@color/white"
+            android:fontFamily="@font/exo_medium"
+            android:textSize="20sp"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/instruction_line5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5.    Select how you’d like to receive your bill."
+            android:textColor="@color/white"
+            android:fontFamily="@font/exo_medium"
+            android:textSize="20sp"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/instruction_line6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6.    You’re all set—happy parking!"
+            android:textColor="@color/white"
+            android:fontFamily="@font/exo_medium"
+            android:textSize="20sp"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Direction to return to Home or Previous Page -->
+        <TextView
+            android:id="@+id/returnDirection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use the Back button (left) or Home button (middle) to go to the previous or Home page."
+            android:textColor="@color/white"
+            android:fontFamily="@font/exo_medium"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="After 60 seconds of inactivity, you'll be redirected to the Home page."
+            android:textColor="@color/white"
+            android:fontFamily="@font/exo_medium"
+            android:textSize="20sp"
+            android:gravity="center"/>
+    </LinearLayout>
+</RelativeLayout>
