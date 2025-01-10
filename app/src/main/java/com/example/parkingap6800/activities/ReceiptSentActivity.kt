@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -19,6 +20,14 @@ class ReceiptSentActivity : AppCompatActivity() {
         val scaleAnim: Animation = AnimationUtils.loadAnimation(this, R.anim.scale_up_down)
         val ellipseGlow = findViewById<ImageView>(R.id.ellipse_glow)
         ellipseGlow.startAnimation(scaleAnim)
+
+        val rootView = findViewById<View>(android.R.id.content)
+        rootView.setOnClickListener {
+            // Intent to switch to ParkingInfoActivity
+            val intent = Intent(this@ReceiptSentActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         // Navigate to MainActivity after 30 seconds
         Handler(Looper.getMainLooper()).postDelayed({
