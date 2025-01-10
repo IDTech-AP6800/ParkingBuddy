@@ -77,21 +77,21 @@ class QrCodeActivity : AppCompatActivity() {
             }
         }
     private fun startCamera() {
-        val cameraController = LifecycleCameraController(baseContext)
-        val previewView: PreviewView = findViewById(R.id.viewFinder)
+                val cameraController = LifecycleCameraController(baseContext)
+                val previewView: PreviewView = findViewById(R.id.viewFinder)
 
-        val options = BarcodeScannerOptions.Builder()
-            .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
-            .build()
-        barcodeScanner = BarcodeScanning.getClient(options)
+                val options = BarcodeScannerOptions.Builder()
+                    .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
+                    .build()
+                barcodeScanner = BarcodeScanning.getClient(options)
 
-        cameraController.setImageAnalysisAnalyzer(
-            ContextCompat.getMainExecutor(this),
-            MlKitAnalyzer(
-                listOf(barcodeScanner),
-                COORDINATE_SYSTEM_VIEW_REFERENCED,
-                ContextCompat.getMainExecutor(this)
-            ) { result: MlKitAnalyzer.Result? ->
+                cameraController.setImageAnalysisAnalyzer(
+                    ContextCompat.getMainExecutor(this),
+                    MlKitAnalyzer(
+                        listOf(barcodeScanner),
+                        COORDINATE_SYSTEM_VIEW_REFERENCED,
+                        ContextCompat.getMainExecutor(this)
+                    ) { result: MlKitAnalyzer.Result? ->
                 val barcodeResults =
                     result?.getValue(barcodeScanner)
                 val barcodeValue =
@@ -109,10 +109,8 @@ class QrCodeActivity : AppCompatActivity() {
                     //If it has a value, that is it scanner
                     Log.d(TAG, "startCamera:\ncodeValue:$barcodeValue" +
                             "\nbarcodeFormat:$barcodeFormat")
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        val intent = Intent(this@QrCodeActivity, ProcessingActivity::class.java)
-                        startActivity(intent)
-                    }, 2000)
+                    val intent = Intent(this@QrCodeActivity, ProcessingActivity::class.java)
+                    startActivity(intent)
                 }
 
                 val qrCodeViewModel = QrCodeViewModel(barcodeResults[0])
