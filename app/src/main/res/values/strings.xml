@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AP6800Parking</string>
+    <string name="app_name">Park Buddy</string>
     <string name="hours_parking_duration">1</string>
     <string name="minutes_parking_duration">0</string>
     <string name="main_page">Tap here to get started</string>

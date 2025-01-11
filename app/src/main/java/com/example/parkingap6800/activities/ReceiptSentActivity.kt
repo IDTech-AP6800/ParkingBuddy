@@ -12,6 +12,7 @@ import android.widget.ImageView
 import com.example.parkingap6800.R
 
 class ReceiptSentActivity : AppCompatActivity() {
+    private var inactivityTimeout: Long = 30000 //30 seconds
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receipt_sent)
@@ -32,7 +33,7 @@ class ReceiptSentActivity : AppCompatActivity() {
         // Navigate to MainActivity after 30 seconds
         Handler(Looper.getMainLooper()).postDelayed({
             navigateToMainActivity()
-        }, 30000) // 30000 milliseconds = 30 seconds
+        }, inactivityTimeout)
     }
 
     private fun navigateToMainActivity() {
@@ -41,4 +42,3 @@ class ReceiptSentActivity : AppCompatActivity() {
         finish() // Close PaymentSuccessActivity
     }
 }
-
