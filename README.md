@@ -27,4 +27,5 @@ Park Buddy is a demonstration application designed to showcase the capabilities 
 * Nathan Serrano ([LinkedIn](https://www.linkedin.com/in/nathanserrano/) | [GitHub](https://github.com/naleono))
 * Ngoc Huynh ([LinkedIn](https://www.linkedin.com/in/ngocvbh/) | [GitHub](https://github.com/ngocvbh))
 * Sanika Bhamare ([LinkedIn](https://www.linkedin.com/in/sanikabhamare/) | [GitHub](https://github.com/SanikaBhamare))
+* Santiago Palomares ([LinkedIn](https://www.linkedin.com/in/santiagopalomares/) | [GitHub](https://github.com/santiagopalomares))
 * Sofia Perez de Tudela ([LinkedIn](https://www.linkedin.com/in/sofia-perez-de-tudela/) | [GitHub](https://github.com/SPerezdeTudela))
